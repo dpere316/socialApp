@@ -7,6 +7,7 @@ const userSchema = new Schema(
     name: String,
     googleId: String,
     imageUrl: String,
+    styles: [{ type: Schema.Types.ObjectId, ref: "Style" }],
   },
   {
     timestamps: true,
