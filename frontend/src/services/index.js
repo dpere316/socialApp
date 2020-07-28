@@ -26,6 +26,9 @@ const actions = {
   },
   updateStatus: async (status) => {
     return await service.post('/profile/status',status)
+  },
+  findFriends: async () => {
+    return await service.get('/find-friends')
   }
 };
 

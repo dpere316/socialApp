@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import actions from "../../services/index";
 
+
 class Home extends Component {
   state = {
     styles: {
@@ -49,6 +50,8 @@ class Home extends Component {
         </ul>
         <textarea onChange ={this.saveStyles}>{JSON.stringify(styles)}</textarea>
         <button onClick = {this.saveStyles}>Save</button>
+
+      
       </div>
     );
   }

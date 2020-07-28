@@ -1,5 +1,6 @@
 import React from 'react';
 import Status from './status/status'
+import Friends from "../profile/friends/friends"
 
 const Profile = (props) => {
     if(!props.user.email){ 
@@ -13,6 +14,7 @@ const Profile = (props) => {
             <Status/>
             <br/>
             <section>Hello I am.....</section>
+            <Friends/>
            
         </div>
     );
