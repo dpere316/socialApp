@@ -20,6 +20,9 @@ const actions = {
   },
   logOut: async () => {
     return await service.get('/logout')
+  },
+  getStyles: async () => {
+    return await service.get('/home')
   }
 };
 
