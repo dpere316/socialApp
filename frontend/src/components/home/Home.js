@@ -33,7 +33,6 @@ class Home extends Component {
   })
  }
 
- 
   render() {
     let styles = this.state.styles;
     return (

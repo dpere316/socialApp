@@ -1,13 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Status from './status/status'
 
 const Profile = (props) => {
     if(!props.user.email){ 
         props.history.push('/log-in') 
-    }   
+    }  
+    console.log(props) 
+    
     return (
         <div>
-            Profile
-            Welcome {props.user.email} !!! 
+            <h1>Welcome {props.user.firstname} !!! </h1>
+            <Status/>
+            <br/>
+            <section>Hello I am.....</section>
+           
         </div>
     );
 }

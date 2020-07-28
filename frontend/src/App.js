@@ -8,14 +8,14 @@ import Profile from "./components/profile/Profile";
 import actions from "./services/index";
 import GoogleAuth from "./components/auth/GoogleAuth";
 import GoogleAuthLogin from "./components/auth/GoogleAuthLogin";
-
+import Status from "./components/profile/status/status"
 class App extends Component {
   state = {};
 
   async componentDidMount() {
     let user = await actions.isLoggedIn();
     this.setState({ ...user.data });
-    console.log("coolest ");
+    // console.log("coolest");
   }
 
   setUser = (user) => this.setState(user);
@@ -28,7 +28,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        {this.state.email}
+        {this.state.email} 
         <nav>
           <NavLink to="/">Home |</NavLink>
 
@@ -63,7 +63,12 @@ class App extends Component {
             path="/profile"
             render={(props) => <Profile {...props} user={this.state} />}
           />
-
+          <Route
+            exact
+            path="/status"
+            render={(props) => <Status {...props} user={this.state} />}
+          />
+          
           <Route component={NotFound} />
         </Switch>
         {!this.state.email && <GoogleAuth setUser={this.setUser} />}

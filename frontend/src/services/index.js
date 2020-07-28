@@ -23,6 +23,9 @@ const actions = {
   },
   getStyles: async () => {
     return await service.get('/home')
+  },
+  updateStatus: async (status) => {
+    return await service.post('/profile/status',status)
   }
 };
 
