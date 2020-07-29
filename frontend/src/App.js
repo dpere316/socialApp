@@ -70,11 +70,7 @@ class App extends Component {
             path="/status"
             render={(props) => <Status {...props} user={this.state} />}
           />
-          <Route
-            exact
-            path="/users"
-            render={(props) => <Friends {...props} user={this.state} />}
-          />
+         
           <Route component={NotFound} />
         </Switch>
         {!this.state.email && <GoogleAuth setUser={this.setUser} />}
