@@ -32,7 +32,14 @@ const actions = {
   },
   addFriend: async (friend) => {
     return await service.post('/add-friends',friend)
+  },
+  removeFriend: async (friend) => {
+    return await service.post('/remove-friends',friend)
+  },
+  retriveStatus: async() => {
+    return await service.get('/get-status')
   }
+
 };
 
 export default actions;

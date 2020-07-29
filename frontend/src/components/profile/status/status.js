@@ -14,7 +14,7 @@ class status extends Component {
     let res = await actions.updateStatus(this.state)
     console.log(res)
   };
-
+  
   render() {
     return (
       <div>

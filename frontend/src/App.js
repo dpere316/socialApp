@@ -10,6 +10,7 @@ import GoogleAuth from "./components/auth/GoogleAuth";
 import GoogleAuthLogin from "./components/auth/GoogleAuthLogin";
 import Status from "./components/profile/status/status"
 import Friends from "./components/profile/friends/friends"
+import Feed from "./components/feed/feed"
 
 class App extends Component {
   state = {};
@@ -67,8 +68,8 @@ class App extends Component {
           />
           <Route
             exact
-            path="/status"
-            render={(props) => <Status {...props} user={this.state} />}
+            path="/feed"
+            render={(props) => <Feed {...props} user={this.state} />}
           />
          
           <Route component={NotFound} />

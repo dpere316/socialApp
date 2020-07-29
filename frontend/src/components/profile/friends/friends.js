@@ -7,7 +7,7 @@ class friends extends Component {
     }
     async componentDidMount() {
     let res = await actions.findFriends(this.state)
-    console.log(res)
+    // console.log("find friends",res)
     this.setState({
         users:res.data.users
     })  
@@ -15,11 +15,12 @@ class friends extends Component {
 
     displayUsers = () =>{
         return this.state.users.map((eachUser) => {
-            console.log(eachUser)
+            // console.log(eachUser)
             return <div>
                 <li>
                     {eachUser.firstname}
                     <button onClick={() => this.addFriend(eachUser)}>Add Friend</button>
+                    <button onClick={() => this.removeFriend(eachUser)}>Remove Friend</button>
                 </li>
             </div>
         })
@@ -28,8 +29,14 @@ class friends extends Component {
     addFriend = async (friend) =>
     {
         let res = await actions.addFriend(friend)
-        console.log(res)
+        // console.log(res)
     }
+
+    removeFriend = async(friend) => {
+        let res = await actions.removeFriend(friend)
+        // console.log(res)
+    }
+
     render() {
         return (
             <div>
