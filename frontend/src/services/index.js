@@ -23,6 +23,15 @@ const actions = {
   },
   getStyles: async () => {
     return await service.get('/home')
+  },
+  updateStatus: async (status) => {
+    return await service.post('/profile/status',status)
+  },
+  findFriends: async () => {
+    return await service.get('/find-friends')
+  },
+  addFriend: async (friend) => {
+    return await service.post('/add-friends',friend)
   }
 };
 

@@ -20,7 +20,6 @@ class friends extends Component {
                 <li>
                     {eachUser.firstname}
                     <button onClick={() => this.addFriend(eachUser)}>Add Friend</button>
-                    <button onClick={()=> this.removeFriend(eachUser)}>Remove Friend</button>
                 </li>
             </div>
         })
