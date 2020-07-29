@@ -1,10 +1,55 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Users = require('../models/User')
+const User = require("../models/User");
 
-router.get('/', (req, res, next) => {
-  res.status(200).json({ msg: 'Working' });
+router.get("/", (req, res, next) => {
+  res.status(200).json({ msg: "Working" });
 });
 
+router.post("/profile/status", isAuth, (req, res, next) => {
+  User.findByIdAndUpdate(req.user._id, req.body, { new: true }).then((user) => {
+    res.json({ user });
+  });
+});
+
+router.get("/find-friends", isAuth, (req, res, next) => {
+  User.find().then((users) => {
+    res.json({ users });
+  });
+});
+
+router.post("/add-friends", isAuth, (req, res, next) => {
+  console.log(
+    "The person who clicked the button",
+    req.user._id,
+    "Befriended",
+    req.body._id
+  );
+  User.findByIdAndUpdate(req.user._id, {
+    $push: { friends: req.body._id },
+  }).then((users) => {
+    User.findByIdAndUpdate(req.body._id, {
+      $push: { friends: req.user._id },
+    }).then((users) => {
+      res.json({ friends: true });
+    });
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+function isAuth(req, res, next) {
+  req.isAuthenticated()
+    ? next()
+    : res.status(401).json({ msg: "Log in first" });
+}
 
 module.exports = router;

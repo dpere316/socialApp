@@ -4,6 +4,7 @@ const User = require('../models/User');
 const passport = require('../config/passport');
 
 router.post('/signup', (req, res, next) => {
+  console.log(req.body)
   User.register(req.body, req.body.password)
     .then((user) => { 
         req.login(user, function(err,result){
@@ -16,9 +17,9 @@ router.post('/signup', (req, res, next) => {
     });
 });
 
-
 //return await service.get('/is-logged-in');
 router.get('/is-logged-in', (req, res, next) => {  
+  console.log(req.user)
   res.json(req.user)
 })
 
@@ -34,7 +35,7 @@ router.get('/logout', (req, res, next) => {
 });
 
 router.get('/profile', isAuth, (req, res, next) => {
-  User.findById(req.user._id)
+  User.findById(req.user._id) 
     .then((user) => res.status(200).json({ user }))
     .catch((err) => res.status(500).json({ err }));
 });
