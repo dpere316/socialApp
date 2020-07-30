@@ -6,20 +6,6 @@ router.get("/", (req, res, next) => {
   res.status(200).json({ msg: "Working" });
 });
 
-// Set status at profile page
-router.post("/profile/status", isAuth, (req, res, next) => {
-  User.findByIdAndUpdate(req.user._id, req.body, { new: true }).then((user) => {
-    res.json({ user });
-  });
-});
-
-// Displays the status of all friends on feed
-router.get("/get-status", isAuth, (req, res, next) => {
-  User.find().then((status) => {
-    console.log("user",status)
-    res.json({ status });
-  });
-})
 
 //Displays a list of users 
 router.get("/find-friends", isAuth, (req, res, next) => {

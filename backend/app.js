@@ -56,8 +56,10 @@ app.use(logger('dev'));
 
 const index = require('./routes/index');
 const auth = require('./routes/auth');
+const status = require('./routes/status.routes');
 app.use('/', index);
 app.use('/', auth);
+app.use('/', status);
 
 // Uncomment this line for production
 let client = path.join(__dirname + '../public/index.html')
