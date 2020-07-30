@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Axios from 'axios'
 import actions from '../../../services'
 
 class status extends Component {
@@ -21,7 +20,7 @@ class status extends Component {
         <form onSubmit={this.handleSubmit}>
           <textarea
             onChange={this.handleChange}
-            name="status"
+            name="content"
             type="text"
             placeholder="Whats on your mind?"
           />
