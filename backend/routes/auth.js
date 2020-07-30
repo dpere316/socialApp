@@ -38,12 +38,9 @@ router.get("/logout", (req, res, next) => {
   res.status(200).json({ msg: "Logged out" });
 });
 
-router.get("/profile", isAuth, (req, res, next) => {
-  User.findById(req.user._id)
-    .populate("styles")
-    .then((user) => res.status(200).json({ user }))
-    .catch((err) => res.status(500).json({ err }));
-});
+// router.get("/profile", isAuth, (req, res, next) => {
+//   User.findById(req.user._id)
+//     .populate("styles")
 
 function isAuth(req, res, next) {
   req.isAuthenticated()

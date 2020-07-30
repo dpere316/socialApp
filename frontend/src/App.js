@@ -8,6 +8,8 @@ import Profile from "./components/profile/Profile";
 import actions from "./services/index";
 import GoogleAuth from "./components/auth/GoogleAuth";
 import GoogleAuthLogin from "./components/auth/GoogleAuthLogin";
+import Status from "./components/profile/status/status";
+import Friends from "./components/profile/friends/friends";
 
 class App extends Component {
   state = {};
@@ -15,7 +17,7 @@ class App extends Component {
   async componentDidMount() {
     let user = await actions.isLoggedIn();
     this.setState({ ...user.data });
-    console.log("coolest ");
+    // console.log("coolest");
   }
 
   setUser = (user) => this.setState(user);
@@ -28,26 +30,32 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        {this.state.email}
         <nav>
-          <NavLink to="/">Home |</NavLink>
+          <div className="nav-email">{this.state.email}</div>
+          <div className="nav-links">
+            <NavLink to="/">|Home|</NavLink>
 
-          {this.state.email ? (
-            <Fragment>
-              <NavLink onClick={this.logOut} to="/">
-                Log Out |
-              </NavLink>
-              <NavLink to="/profile">Profile|</NavLink>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <NavLink to="/sign-up">Sign Up |</NavLink>
-              <NavLink to="/log-in">Log In |</NavLink>
-            </Fragment>
-          )}
+            {this.state.email ? (
+              <Fragment>
+                <NavLink onClick={this.logOut} to="/">
+                  |Log Out |
+                </NavLink>
+                <NavLink to="/profile">|Profile|</NavLink>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <NavLink to="/sign-up">|Sign Up|</NavLink>
+                <NavLink to="/log-in">|Log In|</NavLink>
+              </Fragment>
+            )}
+          </div>
         </nav>
         <Switch>
-          <Route exact path="/" render={(props) => <Home {...props} />} />
+          <Route
+            exact
+            path="/"
+            render={(props) => <Home {...props} user={this.state} />}
+          />
           <Route
             exact
             path="/sign-up"
@@ -62,6 +70,11 @@ class App extends Component {
             exact
             path="/profile"
             render={(props) => <Profile {...props} user={this.state} />}
+          />
+          <Route
+            exact
+            path="/status"
+            render={(props) => <Status {...props} user={this.state} />}
           />
 
           <Route component={NotFound} />
