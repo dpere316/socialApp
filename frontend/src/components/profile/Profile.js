@@ -28,10 +28,13 @@ class Profile extends Component {
     Axios.get(`http://localhost:5000/profile`, { withCredentials: true }).then(
       (res) => {
         console.log(res.data);
+        if(res.data.user.styles.length)
+        {
         this.setState({
           styles: res.data.user.styles.pop().styles,
         });
       }
+    }
     );
   }
 
@@ -41,8 +44,8 @@ class Profile extends Component {
   };
 
   saveStyles = (e) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
+    // console.log(e.target.name);
+    // console.log(e.target.value);
     let styles = JSON.parse(e.target.value);
     this.setState({
       styles,
@@ -53,7 +56,7 @@ class Profile extends Component {
     Axios.post(`http://localhost:5000/profile`, this.state.styles, {
       withCredentials: true,
     }).then((res) => {
-      console.log(res);
+      // console.log(res);
     });
   };
   uploadImage = async (e) => {
@@ -61,12 +64,12 @@ class Profile extends Component {
     const data = new FormData();
     data.append("upload", files[0]);
     let response = await actions.changeProfilePic(data);
-    console.log(response);
+    // console.log(response);
     this.props.setUser(response.data);
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     if (!this.props.user.email) {
       this.props.history.push("/log-in");
     }
