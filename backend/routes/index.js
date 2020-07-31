@@ -1,11 +1,44 @@
+const router = require("express").Router();
+const Style = require("../models/Style.model");
 const express = require("express");
-const router = express.Router();
 const User = require("../models/User");
+const uploader = require("../config/cloudinary-setup");
 
 router.get("/", (req, res, next) => {
   res.status(200).json({ msg: "Working" });
 });
 
+router.get("/home", (req, res, next) => {
+  let styles = {
+    header: {
+      backgroundColor: "blue",
+    },
+    ul: {
+      backgroundColor: "green",
+    },
+  };
+
+  res.status(200).json({ styles });
+});
+
+router.post("/profile", isAuth, (req, res) => {
+  console.log(req.body);
+  let styles = req.body;
+
+  Style.create({ styles, userID: req.user._id }).then((responseFromDB) => {
+    console.log("Wthast ups", responseFromDB, responseFromDB._id);
+    User.findByIdAndUpdate(req.user._id, {
+      $push: { styles: responseFromDB._id },
+    }).then((user) => {
+      res.json({ user, responseFromDB });
+    });
+  });
+});
+router.post("/profile/status", isAuth, (req, res, next) => {
+  User.findByIdAndUpdate(req.user._id, req.body, { new: true }).then((user) => {
+    res.json({ user });
+  });
+});
 
 //Displays a list of users 
 router.get("/find-users", isAuth, (req, res, next) => {
@@ -53,15 +86,30 @@ router.post("/remove-friends", isAuth, (req, res, next) => {
   });
 });
 
+router.get("/profile", isAuth, (req, res, next) => {
+  User.findById(req.user._id)
+    .populate("styles")
+    .then((user) => res.status(200).json({ user }))
+    .catch((err) => res.status(500).json({ err }));
+});
 
+router.get("/others-profile", isAuth, (req, res, next) => {
+  User.findById() //Other person ID not yours
+    .populate("styles")
+    .then((user) => res.status(200).json({ user }))
+    .catch((err) => res.status(500).json({ err }));
+});
 
-
-
-
-
-
-
-// Is logged in
+router.post("/api/uploadfile", uploader.single("upload"), (req, res, next) => {
+  console.log(req.body, req.file);
+  User.findByIdAndUpdate(
+    { _id: req.user._id },
+    { image: req.file.path },
+    { new: true }
+  ) //Other person ID not yours
+    .then((user) => res.status(200).json(user))
+    .catch((err) => res.status(500).json(err));
+});
 function isAuth(req, res, next) {
   req.isAuthenticated()
     ? next()

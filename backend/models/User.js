@@ -13,14 +13,24 @@ const userSchema = new Schema(
     friends:[{type:Schema.Types.ObjectId,ref:"User"}],
     bio:{type:String, default:null},
     status:{type:String, default:null},
-    role:{type:String, default:"Member"}
+    role:{type:String, default:"Member"},
+    styles: [{ type: Schema.Types.ObjectId, ref: "Style" }],
+    image: {
+      type: String,
+      default:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/768px-Circle-icons-profile.svg.png",
+    },
   },
+
   {
     timestamps: true,
     versionKey: false,
   }
 );
 
-userSchema.plugin(PLM, { usernameField: "email", populateFields: ['friends'] });
+userSchema.plugin(PLM, {
+  usernameField: "email",
+  populateFields: ["friends", "styles"],
+});
 
 module.exports = model("User", userSchema);

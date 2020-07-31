@@ -33,26 +33,32 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        {this.state.email} 
         <nav>
-          <NavLink to="/">Home |</NavLink>
+          <div className="nav-email">{this.state.email}</div>
+          <div className="nav-links">
+            <NavLink to="/">|Home|</NavLink>
 
-          {this.state.email ? (
-            <Fragment>
-              <NavLink onClick={this.logOut} to="/">
-                Log Out |
-              </NavLink>
-              <NavLink to="/profile">Profile|</NavLink>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <NavLink to="/sign-up">Sign Up |</NavLink>
-              <NavLink to="/log-in">Log In |</NavLink>
-            </Fragment>
-          )}
+            {this.state.email ? (
+              <Fragment>
+                <NavLink onClick={this.logOut} to="/">
+                  |Log Out |
+                </NavLink>
+                <NavLink to="/profile">|Profile|</NavLink>
+              </Fragment>
+            ) : (
+              <Fragment>
+                <NavLink to="/sign-up">|Sign Up|</NavLink>
+                <NavLink to="/log-in">|Log In|</NavLink>
+              </Fragment>
+            )}
+          </div>
         </nav>
         <Switch>
-          <Route exact path="/" render={(props) => <Home {...props} />} />
+          <Route
+            exact
+            path="/"
+            render={(props) => <Home {...props} user={this.state} />}
+          />
           <Route
             exact
             path="/sign-up"
@@ -66,7 +72,9 @@ class App extends Component {
           <Route
             exact
             path="/profile"
-            render={(props) => <Profile {...props} user={this.state} />}
+            render={(props) => (
+              <Profile {...props} user={this.state} setUser={this.setUser} />
+            )}
           />
           <Route
             exact
@@ -78,7 +86,7 @@ class App extends Component {
             path="/messaging"
             render={(props) => <Messaging {...props} user={this.state} />}
           />
-         
+
           <Route component={NotFound} />
         </Switch>
         {!this.state.email && <GoogleAuth setUser={this.setUser} />}
