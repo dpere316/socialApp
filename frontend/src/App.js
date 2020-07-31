@@ -11,6 +11,8 @@ import GoogleAuthLogin from "./components/auth/GoogleAuthLogin";
 import Status from "./components/profile/status/status"
 import Friends from "./components/profile/friends/friends"
 import Feed from "./components/feed/feed"
+import Messaging from "./components/messaging/messaging"
+import "./styles/app.css"
 
 class App extends Component {
   state = {};
@@ -70,6 +72,11 @@ class App extends Component {
             exact
             path="/feed"
             render={(props) => <Feed {...props} user={this.state} />}
+          />
+          <Route
+            exact
+            path="/messaging"
+            render={(props) => <Messaging {...props} user={this.state} />}
           />
          
           <Route component={NotFound} />

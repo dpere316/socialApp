@@ -24,8 +24,8 @@ const actions = {
   getStyles: async () => {
     return await service.get('/home')
   },
-  findFriends: async () => {
-    return await service.get('/find-friends')
+  findUsers: async () => {
+    return await service.get('/find-users')
   },
   addFriend: async (friend) => {
     return await service.post('/add-friends',friend)

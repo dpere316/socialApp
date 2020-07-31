@@ -24,7 +24,6 @@ class SignUp extends Component {
                     <br/>
                     <input name="firstname" type="text" placeholder="First Name" onChange={this.handleChange} />
                     <input name="lastname" type="text" placeholder="Last Name" onChange={this.handleChange} />
-
                     <br/>
                   <input type="submit" value="Sign Up"/> 
                 </form>

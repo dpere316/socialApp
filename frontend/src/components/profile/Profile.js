@@ -16,6 +16,7 @@ const Profile = (props) => {
             <Status/>
             <br/>
             <section>Hello I am.....</section>
+            <Link to='/messaging'><h4>Messages</h4></Link>
             <Friends/>
            
         </div>
