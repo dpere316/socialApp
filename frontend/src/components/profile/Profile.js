@@ -13,11 +13,10 @@ const Profile = (props) => {
         <div>
             <h1>Welcome {props.user.firstname} !!! </h1>
             <Link to='/feed'><h4>Feed</h4></Link>  
+            <Link to='/messaging'><h4>Messages</h4></Link>
             <Status/>
             <br/>
-            <section>Hello I am.....</section>
-            <Link to='/messaging'><h4>Messages</h4></Link>
-            <Friends/>
+           
            
         </div>
     );
