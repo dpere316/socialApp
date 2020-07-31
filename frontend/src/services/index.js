@@ -37,6 +37,9 @@ const actions = {
     console.log(profilePic);
     return await service.post("/api/uploadfile", profilePic);
   },
+  addProfilePic: async (profilePic) => {
+    return await service.get("/api/uploadfile", profilePic);
+  },
 };
 
 export default actions;

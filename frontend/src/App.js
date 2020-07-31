@@ -69,7 +69,9 @@ class App extends Component {
           <Route
             exact
             path="/profile"
-            render={(props) => <Profile {...props} user={this.state} />}
+            render={(props) => (
+              <Profile {...props} user={this.state} setUser={this.setUser} />
+            )}
           />
           <Route
             exact

@@ -49,14 +49,6 @@ class Profile extends Component {
     });
   };
 
-  submitImage = () => {
-    Axios.post(`/api/uploadfile`, this.state.image, {
-      withCredentials: true,
-    }).then((res) => {
-      console.log(res);
-    });
-  };
-
   submitStyles = () => {
     Axios.post(`http://localhost:5000/profile`, this.state.styles, {
       withCredentials: true,
@@ -70,13 +62,11 @@ class Profile extends Component {
     data.append("upload", files[0]);
     let response = await actions.changeProfilePic(data);
     console.log(response);
-    this.setState({
-      image: response.data.image,
-    });
+    this.props.setUser(response.data);
   };
 
   render() {
-    console.log(this);
+    console.log(this.props);
     if (!this.props.user.email) {
       this.props.history.push("/log-in");
     }
@@ -84,19 +74,22 @@ class Profile extends Component {
     return (
       <body style={styles?.body}>
         <div className="profile">
-          <style>.practice</style>
-          <header style={styles?.header}>Hello World</header>
-          <div className="practice">RGB Color Codes</div>
-          <input type="color" onChange={this.pickColor} placeholder="color" />
           <div>
-            <img src={this.state.image}></img>
-            <input type="file" name="file" onChange={this.uploadImage} />
-            <button onClick={this.submitImage}>Upload</button>
+            <textarea onChange={this.saveStyles}>
+              {JSON.stringify(styles)}
+            </textarea>
+            <button onClick={this.submitStyles}>Save</button>
           </div>
-          <textarea onChange={this.saveStyles}>
-            {JSON.stringify(styles)}
-          </textarea>
-          <button onClick={this.submitStyles}>Save</button>
+          <div>
+            <style>.practice</style>
+            <header style={styles?.header}>Hello World</header>
+            <div className="practice">RGB Color Codes</div>
+            <input type="color" onChange={this.pickColor} placeholder="color" />
+          </div>
+          <div>
+            <img src={this.props.user.image}></img>
+            <input type="file" name="file" onChange={this.uploadImage} />
+          </div>
           <h1>Welcome {this.props.user.firstname} !!! </h1>
           <Status user={this.props.user} />
           <br />

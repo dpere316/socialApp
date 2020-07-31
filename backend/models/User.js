@@ -13,7 +13,11 @@ const userSchema = new Schema(
     bio: { type: String, default: null },
     status: { type: String, default: null },
     styles: [{ type: Schema.Types.ObjectId, ref: "Style" }],
-    image: String,
+    image: {
+      type: String,
+      default:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/768px-Circle-icons-profile.svg.png",
+    },
   },
 
   {

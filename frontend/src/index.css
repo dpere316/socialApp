@@ -18,6 +18,11 @@ textarea {
   height: 100px;
 }
 
+.profile {
+  display: flex;
+  flex-direction: column;
+}
+
 .profile img {
   width: 30%;
   height: auto;
