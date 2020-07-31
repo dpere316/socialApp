@@ -8,7 +8,7 @@ router.get("/", (req, res, next) => {
 
 
 //Displays a list of users 
-router.get("/find-friends", isAuth, (req, res, next) => {
+router.get("/find-users", isAuth, (req, res, next) => {
   User.find({_id:{$ne:req.user._id}}).then((users) => {
     console.log("user",users)
     res.json({ users });
