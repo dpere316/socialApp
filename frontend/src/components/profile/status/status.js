@@ -1,16 +1,27 @@
 import React, { Component } from "react";
-import actions from '../../../services'
+import actions from "../../../services";
+import Axios from "axios";
 
 class status extends Component {
   state = {
     theStatus: this.props.user?.status,
+    status: this.props.user?.status,
   };
   handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ status: e.target.value });
   };
 
   handleSubmit = async (e) => {
     e.preventDefault();
+    await Axios.post(
+      `http://localhost:5000/profile/status`,
+      this.state.status,
+      {
+        withCredentials: true,
+      }
+    ).then((res) => {
+      console.log(res);
+    });
     console.log(this.state);
     let res = await actions.updateStatus(this.state);
     console.log(res);
@@ -18,7 +29,7 @@ class status extends Component {
       theStatus: res.data.user.status,
     });
   };
-  
+
   render() {
     return (
       <div>

@@ -24,24 +24,14 @@ const actions = {
   getStyles: async () => {
     return await service.get("/home");
   },
-  findUsers: async () => {
-    return await service.get('/find-users')
-  },
-  addFriend: async (friend) => {
-    return await service.post('/add-friends',friend)
-  },
-  removeFriend: async (friend) => {
-    return await service.post('/remove-friends',friend)
-  },
-
-  updateStatus: async (status) => {
-    return await service.post('/add-status',status)
-  },
-  retriveStatus: async() => {
-    return await service.get('/get-status')
-  }, 
   updateStatus: async (status) => {
     return await service.post("/profile/status", status);
+  },
+  findFriends: async () => {
+    return await service.get("/find-friends");
+  },
+  addFriend: async (friend) => {
+    return await service.post("/add-friends", friend);
   },
   changeProfilePic: async (profilePic) => {
     console.log(profilePic);

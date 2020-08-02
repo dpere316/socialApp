@@ -28,13 +28,12 @@ class Profile extends Component {
     Axios.get(`http://localhost:5000/profile`, { withCredentials: true }).then(
       (res) => {
         console.log(res.data);
-        if(res.data.user.styles.length)
-        {
-        this.setState({
-          styles: res.data.user.styles.pop().styles,
-        });
+        if (res.data.user.styles.length) {
+          this.setState({
+            styles: res.data.user.styles.pop().styles,
+          });
+        }
       }
-    }
     );
   }
 
@@ -69,6 +68,7 @@ class Profile extends Component {
   };
 
   render() {
+    console.log(this.props.user.status);
     // console.log(this.props);
     if (!this.props.user.email) {
       this.props.history.push("/log-in");

@@ -34,16 +34,17 @@ router.post("/profile", isAuth, (req, res) => {
     });
   });
 });
+
 router.post("/profile/status", isAuth, (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, req.body, { new: true }).then((user) => {
     res.json({ user });
   });
 });
 
-//Displays a list of users 
+//Displays a list of users
 router.get("/find-users", isAuth, (req, res, next) => {
-  User.find({_id:{$ne:req.user._id}}).then((users) => {
-    console.log("user",users)
+  User.find({ _id: { $ne: req.user._id } }).then((users) => {
+    console.log("user", users);
     res.json({ users });
   });
 });
@@ -55,7 +56,7 @@ router.post("/add-friends", isAuth, (req, res, next) => {
     req.user._id,
     "Befriended",
     req.body._id
-  )
+  );
   User.findByIdAndUpdate(req.user._id, {
     $addToSet: { friends: req.body._id },
   }).then((users) => {
