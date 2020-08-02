@@ -33,6 +33,8 @@ class status extends Component {
   render() {
     return (
       <div>
+        <h3>Your Status: {this.state.theStatus}</h3>
+        <br></br>
         <form onSubmit={this.handleSubmit}>
           <textarea
             onChange={this.handleChange}
@@ -42,8 +44,6 @@ class status extends Component {
           />
           <button>update</button>
         </form>
-        <br></br>
-        <h3>{this.state.theStatus}</h3>
       </div>
     );
   }
