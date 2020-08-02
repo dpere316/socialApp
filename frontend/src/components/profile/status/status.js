@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import actions from '../../../services'
 
 class status extends Component {
-  state = {
-    theStatus: this.props.user?.status,
-  };
+  state ={
+    status: this.props.user?.status,
+  }
+
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -15,15 +16,16 @@ class status extends Component {
     let res = await actions.updateStatus(this.state);
     console.log(res);
     this.setState({
-      theStatus: res.data.user.status,
-    });
+      status:res.data.status.content
+    })
+    console.log(this.state.status)
   };
   
   render() {
     return (
       <div>
-        <h3>{this.state.theStatus}</h3>
-        <form onSubmit={this.handleSubmit}>
+         <h3>{this.state.status}</h3>
+          <form onSubmit={this.handleSubmit}>
           <textarea
             onChange={this.handleChange}
             name="content"

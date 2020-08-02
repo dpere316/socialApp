@@ -3,6 +3,7 @@ import Status from "./status/status";
 import Friends from "../profile/friends/friends";
 import actions from "../../services/index";
 import Axios from "axios";
+import {Link } from 'react-router-dom';
 
 class Profile extends Component {
   state = {
@@ -98,6 +99,7 @@ class Profile extends Component {
           <br />
           <section>Hello I am.....</section>
           <Friends />
+          <Link to='/feed'>Feed</Link>
         </div>
       </body>
     );
