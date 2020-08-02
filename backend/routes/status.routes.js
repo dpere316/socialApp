@@ -10,7 +10,7 @@ router.post("/add-status", isAuth, (req, res, next) => {
     }).then((status) => {
       console.log("user",status)
       res.json( {status} );
-    });
+    })
   })
   
 router.get('/get-status', isAuth, (req, res, next) => {
