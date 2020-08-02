@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Status from "./status/status";
 import Friends from "../profile/friends/friends";
+import Inbox from "../messaging/messaging"
 import actions from "../../services/index";
 import Axios from "axios";
 import {Link } from 'react-router-dom';
@@ -129,6 +130,8 @@ class Profile extends Component {
           <section>Hello I am.....</section>
           <Friends />
           <Link to='/feed'>Feed</Link>
+          <Link to='/messaging'>Inbox</Link>
+
         </div>
       </body>
     );
