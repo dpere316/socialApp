@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Status = require("../models/status.model");
+const User = require("../models/User");
 
 // Displays the status of all friends on feed
 router.post("/add-status", isAuth, (req, res, next) => {
