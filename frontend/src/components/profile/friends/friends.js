@@ -112,5 +112,4 @@ class friends extends Component {
     );
   }
 }
-
 export default friends;

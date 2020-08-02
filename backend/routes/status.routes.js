@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const Status = require("../models/status.model");
 
@@ -34,9 +34,9 @@ router.get('/get-status', isAuth, (req, res, next) => {
 
 // Is logged in
 function isAuth(req, res, next) {
-    req.isAuthenticated()
-      ? next()
-      : res.status(401).json({ msg: "Log in first" });
-  }
-  
-module.exports = router
+  req.isAuthenticated()
+    ? next()
+    : res.status(401).json({ msg: "Log in first" });
+}
+
+module.exports = router;

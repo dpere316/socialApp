@@ -8,12 +8,11 @@ import Profile from "./components/profile/Profile";
 import actions from "./services/index";
 import GoogleAuth from "./components/auth/GoogleAuth";
 import GoogleAuthLogin from "./components/auth/GoogleAuthLogin";
-import Status from "./components/profile/status/status"
-import Friends from "./components/profile/friends/friends"
-import Feed from "./components/feed/feed"
-import Messaging from "./components/messaging/messaging"
-import "./styles/app.css"
-
+import Status from "./components/profile/status/status";
+import Friends from "./components/profile/friends/friends";
+import Feed from "./components/feed/feed";
+import Messaging from "./components/messaging/messaging";
+import "./styles/app.css";
 class App extends Component {
   state = {};
 
@@ -86,7 +85,6 @@ class App extends Component {
             path="/messaging"
             render={(props) => <Messaging {...props} user={this.state} />}
           />
-
           <Route component={NotFound} />
         </Switch>
         {!this.state.email && <GoogleAuth setUser={this.setUser} />}

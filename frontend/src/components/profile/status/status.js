@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import actions from '../../../services'
+import actions from "../../../services";
+import Axios from "axios";
 
 class status extends Component {
+  
   state ={
     status: this.props.user?.status,
   }
@@ -38,5 +40,4 @@ class status extends Component {
     );
   }
 }
-
 export default status;

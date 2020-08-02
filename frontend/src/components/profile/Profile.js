@@ -18,7 +18,14 @@ class Profile extends Component {
         color: "",
         fontSize: "",
       },
+      section: {
+        background: "",
+        color: "",
+        fontSize: "",
+      },
     },
+
+    show: true,
     image:
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     selectedFile: null,
@@ -29,13 +36,12 @@ class Profile extends Component {
     Axios.get(`http://localhost:5000/profile`, { withCredentials: true }).then(
       (res) => {
         console.log(res.data);
-        if(res.data.user.styles.length)
-        {
-        this.setState({
-          styles: res.data.user.styles.pop().styles,
-        });
+        if (res.data.user.styles.length) {
+          this.setState({
+            styles: res.data.user.styles.pop().styles,
+          });
+        }
       }
-    }
     );
   }
 
@@ -70,6 +76,7 @@ class Profile extends Component {
   };
 
   render() {
+    console.log(this.props.user.status);
     // console.log(this.props);
     if (!this.props.user.email) {
       this.props.history.push("/log-in");
@@ -78,25 +85,47 @@ class Profile extends Component {
     return (
       <body style={styles?.body}>
         <div className="profile">
-          <div>
-            <textarea onChange={this.saveStyles}>
-              {JSON.stringify(styles)}
-            </textarea>
-            <button onClick={this.submitStyles}>Save</button>
-          </div>
-          <div>
-            <style>.practice</style>
-            <header style={styles?.header}>Hello World</header>
-            <div className="practice">RGB Color Codes</div>
-            <input type="color" onChange={this.pickColor} placeholder="color" />
-          </div>
-          <div>
+          {this.state.show ? (
+            <div>
+              <style>.practice</style>
+              <div className="practice">RGB Color Codes</div>
+              <input
+                type="color"
+                onChange={this.pickColor}
+                placeholder="color"
+              />
+              <div>
+                <textarea onChange={this.saveStyles}>
+                  {JSON.stringify(styles)}
+                </textarea>
+                <button onClick={this.submitStyles}>Save</button>
+              </div>
+            </div>
+          ) : null}
+          <button
+            className="showStyles"
+            onClick={() => {
+              this.setState({ show: !this.state.show });
+            }}
+          >
+            {this.state.show ? "Hide" : "Show"} StylesBox
+          </button>
+          <header style={styles?.header}>
+            <h1>Welcome {this.props.user.firstname} !!! </h1>
+          </header>
+          <section className="image-container" style={styles?.section}>
             <img src={this.props.user.image}></img>
-            <input type="file" name="file" onChange={this.uploadImage} />
-          </div>
-          <h1>Welcome {this.props.user.firstname} !!! </h1>
-          <Status user={this.props.user} />
-          <br />
+            <input
+              type="file"
+              placeholder="Change Profile Pic"
+              name="file"
+              onChange={this.uploadImage}
+            />
+            <div className="status">
+              <Status user={this.props.user} />
+            </div>
+          </section>
+
           <section>Hello I am.....</section>
           <Friends />
           <Link to='/feed'>Feed</Link>
