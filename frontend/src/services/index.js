@@ -40,6 +40,9 @@ const actions = {
   retriveStatus: async() => {
     return await service.get('/get-status')
   }, 
+  userStatus:async(id)=> {
+    return await service.get(`/user-status?id=${id}`)
+  },
   changeProfilePic: async (profilePic) => {
     console.log(profilePic);
     return await service.post("/api/uploadfile", profilePic);
