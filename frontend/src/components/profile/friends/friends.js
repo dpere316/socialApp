@@ -9,6 +9,7 @@ class friends extends Component {
   };
 
   async componentDidMount() {
+    // console.log("line12",this.state)
     let res = await actions.findUsers(this.state);
     let curr = await actions.isLoggedIn(this.state);
     // console.log("find friends",res)
