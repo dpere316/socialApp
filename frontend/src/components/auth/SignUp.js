@@ -9,8 +9,10 @@ class SignUp extends Component {
     handleChange = e => this.setState({[e.target.name]: e.target.value})
 
     handleSubmit =  e => {
+        let user = {...this.state}
+        user.name = user.firstname + ' ' + user.lastname 
         e.preventDefault()
-            actions.signUp(this.state).then(user=> {
+            actions.signUp(user).then(user=> {
                 this.props.setUser({...user.data})  
             }).catch(({ response }) => console.error(response.data));
     }

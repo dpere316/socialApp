@@ -5,7 +5,7 @@ import Axios from "axios";
 class status extends Component {
   
   state ={
-    status: '',
+    status:'',
   }
 
   handleChange = (e) => {
@@ -14,7 +14,7 @@ class status extends Component {
 
  async componentDidMount () {
       let res = await actions.userStatus(this.props.user._id);
-      console.log(res)
+      // console.log(res)
       this.setState({
         status:res.data.content
       })
@@ -24,15 +24,15 @@ class status extends Component {
     e.preventDefault();
     console.log(this.state);
     let res = await actions.updateStatus(this.state);
-    console.log(res);
+    // console.log(res);
     this.setState({
       status:res.data.status.content
     })
-    console.log(this.state.status)
+    // console.log(this.state.status)
   };
   
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div>
          <h3>{this.state.status}</h3>

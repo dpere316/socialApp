@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import actions from "../../../services";
 import Talk from "talkjs";
 
-class friends extends Component {
+class users extends Component {
   state = {
     users: [],
     currentUser: [],
+    searchValue: ""
   };
 
   async componentDidMount() {
@@ -22,31 +23,43 @@ class friends extends Component {
 
   displayUsers = () => {
     return this.state.users.map((eachUser) => {
-      // console.log(eachUser)
-      return (
-        <div>
-          <li>
-            {eachUser.firstname}
-            <button onClick={() => this.addFriend(eachUser)}>Add Friend</button>
-            <button onClick={() => this.removeFriend(eachUser)}>
-              Remove Friend
-            </button>
-            <button onClick={(userId) => this.handleClick(eachUser._id)}>
-              Message
-            </button>
-          </li>
-        </div>
-      );
+      console.log(eachUser)
+      if(eachUser.name.toLowerCase().includes(this.state.searchValue.toLowerCase())){
+        return (
+          <div>
+            <li>
+              {eachUser.firstname}
+              <button onClick={() => this.addFriend(eachUser)}>Add Friend</button>
+              <button onClick={() => this.removeFriend(eachUser)}>
+                Remove Friend
+              </button>
+              <button onClick={(userId) => this.handleClick(eachUser._id)}>
+                Message
+              </button>
+            </li>
+          </div>
+        );
+      }
     });
   };
+
+  handleOnChange = (event) => {
+    this.setState({ searchValue: event.target.value });
+  };
+
+  handleSearch = () => {
+    this.setState({ show: true });
+  };
+
+
 
   handleClick(userId) {
     /* Retrieve the two users that will participate in the conversation */
     const currentUser = this.state.currentUser;
     const user = this.state.users.find((user) => user._id === userId);
-    console.log(currentUser);
-    console.log(user);
-    console.log(userId);
+    // console.log(currentUser);
+    // console.log(user);
+    // console.log(userId);
 
     /* Session initialization code */
     Talk.ready
@@ -63,8 +76,8 @@ class friends extends Component {
           id: user._id,
         });
 
-        console.log("Me", me);
-        console.log("Other", other);
+        // console.log("Me", me);
+        // console.log("Other", other);
         /* Create a talk session if this does not exist. Remember to replace tthe APP ID with the one on your dashboard */
         if (!window.talkSession) {
           window.talkSession = new Talk.Session({
@@ -103,6 +116,15 @@ class friends extends Component {
   render() {
     return (
       <div>
+      <input
+          name="text"
+          type="text"
+          placeholder="Search"
+          onChange={(event) => this.handleOnChange(event)}
+          value={this.state.searchValue}
+        />
+         <button onClick={this.handleSearch}>Search</button>
+
         {this.displayUsers()}
         <div className="chatbox-container" ref={(c) => (this.container = c)}>
           <div id="talkjs-container" style={{ height: "600px" }}>
@@ -113,4 +135,5 @@ class friends extends Component {
     );
   }
 }
-export default friends;
+export default users;
+

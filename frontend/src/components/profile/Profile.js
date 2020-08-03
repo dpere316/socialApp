@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import Status from "./status/status";
-import Friends from "../profile/friends/friends";
-import Inbox from "../messaging/messaging"
 import actions from "../../services/index";
 import Axios from "axios";
-import {Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 class Profile extends Component {
   state = {
@@ -30,13 +28,14 @@ class Profile extends Component {
     image:
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     selectedFile: null,
+    friends: [],
   };
 
-  componentDidMount() {
-    console.log(this);
+  async componentDidMount() {
+    // console.log(this);
     Axios.get(`http://localhost:5000/profile`, { withCredentials: true }).then(
       (res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.user.styles.length) {
           this.setState({
             styles: res.data.user.styles.pop().styles,
@@ -44,6 +43,12 @@ class Profile extends Component {
         }
       }
     );
+    let me = await actions.getFriends();
+    // console.log(me)
+    this.setState({
+      friends: me.data.users.friends,
+    });
+    console.log("My Friends", this.state.friends);
   }
 
   pickColor = (e) => {
@@ -76,9 +81,18 @@ class Profile extends Component {
     this.props.setUser(response.data);
   };
 
+  displayFriends = () => {
+    return this.state.friends.map((eachUser) => {
+      return (
+        <div>
+          {eachUser.name}
+          <img src={eachUser.image} />
+        </div>
+      );
+    });
+  };
+
   render() {
-    console.log(this.props.user.status);
-    // console.log(this.props);
     if (!this.props.user.email) {
       this.props.history.push("/log-in");
     }
@@ -128,10 +142,11 @@ class Profile extends Component {
           </section>
 
           <section>Hello I am.....</section>
-          <Friends />
-          <Link to='/feed'>Feed</Link>
-          <Link to='/messaging'>Inbox</Link>
-
+          <Link to="/feed">Feed</Link>
+          <Link to="/messaging">Inbox</Link>
+          <Link to="/users">Users</Link>
+          <h1>My Friends</h1>
+          {this.displayFriends()}
         </div>
       </body>
     );

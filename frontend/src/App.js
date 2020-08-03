@@ -9,7 +9,7 @@ import actions from "./services/index";
 import GoogleAuth from "./components/auth/GoogleAuth";
 import GoogleAuthLogin from "./components/auth/GoogleAuthLogin";
 import Status from "./components/profile/status/status";
-import Friends from "./components/profile/friends/friends";
+import Users from "./components/profile/friends/users";
 import Feed from "./components/feed/feed";
 import Messaging from "./components/messaging/messaging";
 import "./styles/app.css";
@@ -84,6 +84,11 @@ class App extends Component {
             exact
             path="/messaging"
             render={(props) => <Messaging {...props} user={this.state} />}
+          />
+          <Route
+            exact
+            path="/users"
+            render={(props) => <Users {...props} user={this.state} />}
           />
           <Route component={NotFound} />
         </Switch>

@@ -27,6 +27,9 @@ const actions = {
   findUsers: async () => {
     return await service.get('/find-users')
   },
+  getFriends:async () => {
+    return await service.get('/get-friends')
+  },
   addFriend: async (friend) => {
     return await service.post('/add-friends',friend)
   },
