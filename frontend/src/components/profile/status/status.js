@@ -3,39 +3,31 @@ import actions from "../../../services";
 import Axios from "axios";
 
 class status extends Component {
-  state = {
-    theStatus: this.props.user?.status,
+  
+  state ={
     status: this.props.user?.status,
-  };
+  }
+
   handleChange = (e) => {
-    this.setState({ status: e.target.value });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    await Axios.post(
-      `http://localhost:5000/profile/status`,
-      this.state.status,
-      {
-        withCredentials: true,
-      }
-    ).then((res) => {
-      console.log(res);
-    });
     console.log(this.state);
     let res = await actions.updateStatus(this.state);
     console.log(res);
     this.setState({
-      theStatus: res.data.user.status,
-    });
+      status:res.data.status.content
+    })
+    console.log(this.state.status)
   };
-
+  
   render() {
     return (
       <div>
-        <h3>Your Status: {this.state.theStatus}</h3>
-        <br></br>
-        <form onSubmit={this.handleSubmit}>
+         <h3>{this.state.status}</h3>
+          <form onSubmit={this.handleSubmit}>
           <textarea
             onChange={this.handleChange}
             name="content"
@@ -48,5 +40,4 @@ class status extends Component {
     );
   }
 }
-
 export default status;
