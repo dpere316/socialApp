@@ -12,7 +12,6 @@ const userSchema = new Schema(
     song:{type:String, default:null},
     friends:[{type:Schema.Types.ObjectId,ref:"User"}],
     bio:{type:String, default:null},
-    status:{type:String, default:null},
     role:{type:String, default:"Member"},
     styles: [{ type: Schema.Types.ObjectId, ref: "Style" }],
     image: {

@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const Status = require("../models/status.model");
-const User = require("../models/User");
 
 // Displays the status of all friends on feed
 router.post("/add-status", isAuth, (req, res, next) => {
@@ -25,11 +24,14 @@ router.get('/get-status', isAuth, (req, res, next) => {
     }).catch( err => console.log(err))
 })
 
-
-
-
-
-
+router.get('/user-status', isAuth, (req, res, next) => {
+  console.log("user122",req.query)
+    Status.find({user: req.query.id}).then(status => {
+      console.log(status)
+        res.json(status.pop())
+        
+    }).catch( err => console.log(err))
+})
 
 
 
