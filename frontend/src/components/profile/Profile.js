@@ -24,8 +24,7 @@ class Profile extends Component {
       },
     },
 
-    show: false,
-    showTheme: false,
+    show: true,
     image:
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     selectedFile: null,
@@ -36,10 +35,11 @@ class Profile extends Component {
     // console.log(this);
     Axios.get(`http://localhost:5000/profile`, { withCredentials: true }).then(
       (res) => {
-        // console.log(res.data);
-        if (res.data.user.styles.length) {
+        console.log(res.data.user.styles, res.data);
+        let styles = [...res.data.user.styles];
+        if (styles.pop()?.styles) {
           this.setState({
-            styles: res.data.user.styles.pop().styles,
+            styles: styles.pop().styles,
           });
         }
       }
@@ -58,6 +58,7 @@ class Profile extends Component {
   };
 
   saveStyles = (e) => {
+    console.log("save style");
     // console.log(e.target.name);
     // console.log(e.target.value);
     let styles = JSON.parse(e.target.value);
@@ -85,9 +86,11 @@ class Profile extends Component {
   displayFriends = () => {
     return this.state.friends.map((eachUser) => {
       return (
-        <div>
-          {eachUser.name}
-          <Link to=''><img src={eachUser.image} /></Link>
+        <div className="friend">
+          {eachUser.firstname} {eachUser.lastname}
+          <Link to="">
+            <img src={eachUser.image} />
+          </Link>
         </div>
       );
     });
@@ -98,6 +101,7 @@ class Profile extends Component {
       this.props.history.push("/log-in");
     }
     let styles = this.state.styles;
+    console.log(styles, this);
     return (
       <body style={styles?.body}>
         <div className="profile">
@@ -162,12 +166,13 @@ class Profile extends Component {
               controls
             ></audio>
           </div>
-          <section>Hello I am.....</section>
-          <Link to="/feed">Feed</Link>
-          <Link to="/messaging">Inbox</Link>
-          <Link to="/users">Users</Link>
+          <div className="profile-links">
+            <Link to="/feed">Feed</Link>
+            <Link to="/messaging">Inbox</Link>
+            <Link to="/users">Users</Link>
+          </div>
           <h1>My Friends</h1>
-          {this.displayFriends()}
+          <div className="friends-container">{this.displayFriends()}</div>
         </div>
       </body>
     );

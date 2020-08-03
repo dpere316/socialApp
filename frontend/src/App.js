@@ -15,7 +15,7 @@ import Feed from "./components/feed/feed";
 import Messaging from "./components/messaging/messaging";
 import "./styles/app.css";
 class App extends Component {
-  state = {};
+  state = { hello: "world" };
 
   async componentDidMount() {
     let user = await actions.isLoggedIn();
@@ -85,7 +85,7 @@ class App extends Component {
           <Route
             exact
             path="/feed"
-            render={(props) => <Feed {...props} user={this.state} />}
+            render={(props) => <Feed {...props} user={this.state} hey="sup" />}
           />
           <Route
             exact
@@ -96,9 +96,9 @@ class App extends Component {
             exact
             path="/status"
             render={(props) => <Status {...props} user={this.state} />}
-            />
-           <Route 
-            exact 
+          />
+          <Route
+            exact
             path="/users"
             render={(props) => <Users {...props} user={this.state} />}
           />

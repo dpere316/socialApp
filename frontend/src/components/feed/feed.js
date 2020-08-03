@@ -14,19 +14,22 @@ class feed extends Component {
     });
     console.log(this.state.feed);
   }
-
+  componentWillReceiveProps(props) {
+    console.log(props);
+  }
   displayStatuses = () => {
     return this.state.feed.map((eachUser) => {
       if (eachUser.content != null)
         return (
           <div>
-            {eachUser.firstname} : {eachUser.content}
+            {eachUser.firstname} {eachUser.lastname} : {eachUser.content}
           </div>
         );
     });
   };
   render() {
-    return <div>{this.displayStatuses()}</div>;
+    console.log(this);
+    return <div>Hello{this.displayStatuses()}</div>;
   }
 }
 

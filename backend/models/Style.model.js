@@ -1,7 +1,23 @@
 const { Schema, model } = require("mongoose");
 
 const styleSchema = new Schema({
-  styles: Object,
+  styles: {type: Object, default :{
+    header: {
+      background: "",
+      fontSize: "",
+    },
+
+    body: {
+      background: "white",
+      color: "",
+      fontSize: "",
+    },
+    section: {
+      background: "",
+      color: "",
+      fontSize: "",
+    }
+  },
   userID: Schema.Types.ObjectId,
 });
 
