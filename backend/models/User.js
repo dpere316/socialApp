@@ -5,8 +5,8 @@ const userSchema = new Schema(
   {
     name:{type:String},
     email: {type:String},
-    firstname:{type:String, required:true},
-    lastname:{type:String, required:true},
+    firstname:{type:String},
+    lastname:{type:String},
     googleId: {type:String},
     imageUrl: {type:String},
     song:{type:String, default:null},

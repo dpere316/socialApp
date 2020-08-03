@@ -35,10 +35,16 @@ router.post("/profile", isAuth, (req, res) => {
   });
 });
 
-
-//Displays a list of users
 router.get("/find-users", isAuth, (req, res, next) => {
   User.find({ _id: { $ne: req.user._id } }).then((users) => {
+    console.log("user", users);
+    res.json({ users });
+  });
+});
+
+
+router.get("/get-friends", isAuth, (req, res, next) => {
+  User.findById(req.user._id).populate('friends').then((users) => {
     console.log("user", users);
     res.json({ users });
   });
@@ -62,6 +68,8 @@ router.post("/add-friends", isAuth, (req, res, next) => {
     });
   });
 });
+
+
 
 // Remove friend from list
 router.post("/remove-friends", isAuth, (req, res, next) => {
