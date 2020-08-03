@@ -5,9 +5,11 @@ import { GoogleLogin } from "react-google-login";
 const responseGoogle = (props) => {
   // console.log(props);
   const onResponse = (response) => {
-    // console.log(response);
+    console.log(response);
     const user = {
       ...response.profileObj,
+      firstname:response.profileObj.givenName,
+      lastname:response.profileObj.familyName,
       password: response.profileObj?.googleId,
     };
     actions

@@ -49,6 +49,13 @@ router.post("/song", isAuth, (req, res, next) => {
       res.json({ user });
     })
     .catch((err) => console.error(err));
+  })
+  
+router.get("/get-friends", isAuth, (req, res, next) => {
+  User.findById(req.user._id).populate('friends').then((users) => {
+    console.log("user", users);
+    res.json({ users });
+  });
 });
 
 //Add Friends
@@ -69,6 +76,8 @@ router.post("/add-friends", isAuth, (req, res, next) => {
     });
   });
 });
+
+
 
 // Remove friend from list
 router.post("/remove-friends", isAuth, (req, res, next) => {
