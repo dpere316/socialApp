@@ -86,7 +86,7 @@ class Profile extends Component {
       return (
         <div>
           {eachUser.name}
-          <img src={eachUser.image} />
+          <Link to=''><img src={eachUser.image} /></Link>
         </div>
       );
     });
