@@ -35,13 +35,20 @@ router.post("/profile", isAuth, (req, res) => {
   });
 });
 
-
 //Displays a list of users
 router.get("/find-users", isAuth, (req, res, next) => {
   User.find({ _id: { $ne: req.user._id } }).then((users) => {
     console.log("user", users);
     res.json({ users });
   });
+});
+
+router.post("/song", isAuth, (req, res, next) => {
+  User.findByIdAndUpdate(req.user._id, { song: req.body.song }, { new: true })
+    .then((user) => {
+      res.json({ user });
+    })
+    .catch((err) => console.error(err));
 });
 
 //Add Friends

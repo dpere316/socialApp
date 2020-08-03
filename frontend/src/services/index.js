@@ -25,23 +25,27 @@ const actions = {
     return await service.get("/home");
   },
   findUsers: async () => {
-    return await service.get('/find-users')
+    return await service.get("/find-users");
   },
   addFriend: async (friend) => {
-    return await service.post('/add-friends',friend)
+    return await service.post("/add-friends", friend);
+  },
+  addSong: async (song) => {
+    console.log(song);
+    return await service.post("/song", { song });
   },
   removeFriend: async (friend) => {
-    return await service.post('/remove-friends',friend)
+    return await service.post("/remove-friends", friend);
   },
 
   updateStatus: async (status) => {
-    return await service.post('/add-status',status)
+    return await service.post("/add-status", status);
   },
-  retriveStatus: async() => {
-    return await service.get('/get-status')
-  }, 
-  userStatus:async(id)=> {
-    return await service.get(`/user-status?id=${id}`)
+  retriveStatus: async () => {
+    return await service.get("/get-status");
+  },
+  userStatus: async (id) => {
+    return await service.get(`/user-status?id=${id}`);
   },
   changeProfilePic: async (profilePic) => {
     console.log(profilePic);

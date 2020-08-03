@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
 import Home from "./components/home/Home";
 import NotFound from "./components/404/NotFound.js";
 import SignUp from "./components/auth/SignUp";
+import Music from "./components/Music";
 import LogIn from "./components/auth/LogIn";
 import Profile from "./components/profile/Profile";
 import actions from "./services/index";
@@ -42,6 +43,7 @@ class App extends Component {
                 <NavLink onClick={this.logOut} to="/">
                   |Log Out |
                 </NavLink>
+                <NavLink to="/Music">|Music|</NavLink>
                 <NavLink to="/profile">|Profile|</NavLink>
               </Fragment>
             ) : (
@@ -70,6 +72,11 @@ class App extends Component {
           />
           <Route
             exact
+            path="/Music"
+            render={(props) => <Music {...props} setUser={this.setUser} />}
+          />
+          <Route
+            exact
             path="/profile"
             render={(props) => (
               <Profile {...props} user={this.state} setUser={this.setUser} />
@@ -84,6 +91,11 @@ class App extends Component {
             exact
             path="/messaging"
             render={(props) => <Messaging {...props} user={this.state} />}
+          />
+          <Route
+            exact
+            path="/status"
+            render={(props) => <Status {...props} user={this.state} />}
           />
           <Route component={NotFound} />
         </Switch>

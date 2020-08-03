@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Status from "./status/status";
 import Friends from "../profile/friends/friends";
-import Inbox from "../messaging/messaging"
+import Inbox from "../messaging/messaging";
 import actions from "../../services/index";
 import Axios from "axios";
-import {Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 class Profile extends Component {
   state = {
@@ -27,6 +27,7 @@ class Profile extends Component {
     },
 
     show: false,
+    showTheme: false,
     image:
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     selectedFile: null,
@@ -96,10 +97,22 @@ class Profile extends Component {
                 placeholder="color"
               />
               <div>
-                <textarea onChange={this.saveStyles}>
+                <textarea className="styles-text" onChange={this.saveStyles}>
                   {JSON.stringify(styles)}
                 </textarea>
-                <button onClick={this.submitStyles}>Save</button>
+                <br></br>
+                <button className="styles-btn" onClick={this.submitStyles}>
+                  Save
+                </button>
+                <br></br>
+                <h4>Saved Themes:</h4>
+                <div className="themes">
+                  {this.props.user.styles?.map((theme) =>
+                    theme.styles ? (
+                      <textarea>{JSON.stringify(theme.styles)}</textarea>
+                    ) : null
+                  )}
+                </div>
               </div>
             </div>
           ) : null}
@@ -111,6 +124,7 @@ class Profile extends Component {
           >
             {this.state.show ? "Hide" : "Show"} StylesBox
           </button>
+
           <header style={styles?.header}>
             <h1>Welcome {this.props.user.firstname} !!! </h1>
           </header>
@@ -122,16 +136,22 @@ class Profile extends Component {
               name="file"
               onChange={this.uploadImage}
             />
+
             <div className="status">
               <Status user={this.props.user} />
             </div>
           </section>
-
+          <div className="song-div">
+            <audio
+              className="songs"
+              src={this.props.user.song}
+              controls
+            ></audio>
+          </div>
           <section>Hello I am.....</section>
           <Friends />
-          <Link to='/feed'>Feed</Link>
-          <Link to='/messaging'>Inbox</Link>
-
+          <Link to="/feed">Feed</Link>
+          <Link to="/messaging">Inbox</Link>
         </div>
       </body>
     );
