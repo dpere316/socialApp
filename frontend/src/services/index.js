@@ -2,8 +2,9 @@ import axios from "axios";
 let baseURL;
 
 process.env.NODE_ENV === "production"
-  ? // ? (baseURL = 'https://sheltered-dawn-07708.herokuapp.com')
-    (baseURL = "window.location.origin")
+  ? (baseURL = "https://git.heroku.com/social-space.git")(
+      (baseURL = "window.location.origin")
+    )
   : (baseURL = "http://localhost:5000");
 
 const service = axios.create({ withCredentials: true, baseURL });
@@ -27,8 +28,8 @@ const actions = {
   findUsers: async () => {
     return await service.get("/find-users");
   },
-  getFriends:async () => {
-    return await service.get('/get-friends')
+  getFriends: async () => {
+    return await service.get("/get-friends");
   },
   addFriend: async (friend) => {
     return await service.post("/add-friends", friend);
