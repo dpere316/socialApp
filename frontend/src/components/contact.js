@@ -11,22 +11,28 @@ class Contact extends Component {
           <p>
             Location: Los Angeles, CA<br></br>
             LinkedIn:{" "}
-            <a href="linkedin.com/in/richard-toledo/">
+            <a target="_blank" href="https://linkedin.com/in/richard-toledo/">
               Richard Toledo/LinkedIn
             </a>
             <br></br>
             Github:{" "}
-            <a href="https://github.com/Rickytoledo">Richard Toledo/Github</a>
+            <a target="_blank" href="https://github.com/Rickytoledo">
+              Richard Toledo/Github
+            </a>
           </p>
         </div>
         <div className="daniel">
           <p>
             Location: Miami, FL<br></br>
             LinkedIn:{" "}
-            <a href="www.linkedin.com/in/dperez316">Daniel Perez/LinkedIn</a>
+            <a target="_blank" href="https://linkedin.com/in/dperez316">
+              Daniel Perez/LinkedIn
+            </a>
             <br></br>
             Github:{" "}
-            <a href="https://github.com/dpere316">Daniel Perez/Github</a>
+            <a target="_blank" href="https://github.com/dpere316">
+              Daniel Perez/Github
+            </a>
           </p>
           <img alt="daniel" src={require("../images/daniel.jpeg")}></img>
         </div>
