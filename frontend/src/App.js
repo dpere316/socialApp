@@ -15,7 +15,7 @@ import Feed from "./components/feed/feed";
 import Messaging from "./components/messaging/messaging";
 import "./styles/app.css";
 class App extends Component {
-  state = { hello: "world" };
+  state = {};
 
   async componentDidMount() {
     let user = await actions.isLoggedIn();
@@ -54,10 +54,12 @@ class App extends Component {
             )}
           </div>
         </nav>
-        <h1>Social Space</h1>
-        <div className="googleSignUp">
-          {!this.state.email && <GoogleAuth setUser={this.setUser} />}{" "}
-          {!this.state.email && <GoogleAuthLogin setUser={this.setUser} />}
+        <div className="header">
+          <h1>Social Space</h1>
+          <div className="googleSignUp">
+            {!this.state.email && <GoogleAuth setUser={this.setUser} />}{" "}
+            {!this.state.email && <GoogleAuthLogin setUser={this.setUser} />}
+          </div>
         </div>
         <Switch>
           <Route

@@ -17,7 +17,7 @@ class LogIn extends Component {
   render() {
     return (
       <Fragment>
-        <h2>LogIn</h2>
+        <h2>Log Into Your Account:</h2>
         <form onSubmit={this.handleSubmit}>
           <input
             name="email"
@@ -33,7 +33,7 @@ class LogIn extends Component {
             onChange={this.handleChange}
           />
           <br></br>
-          <input type="submit" value="Log In" />
+          <input id="login-btn" type="submit" value="Log In" />
         </form>
       </Fragment>
     );

@@ -20,7 +20,7 @@ class SignUp extends Component {
   render() {
     return (
       <Fragment>
-        <h2>SignUP</h2>
+        <h2>Sign Up For Free!</h2>
         <form onSubmit={this.handleSubmit}>
           <input
             name="email"
@@ -52,7 +52,7 @@ class SignUp extends Component {
           />
           <br></br>
 
-          <input type="submit" value="Sign Up" />
+          <input id="submit-btn" type="submit" value="Sign Up" />
         </form>
       </Fragment>
     );

@@ -19,6 +19,7 @@ code {
   border-radius: 10px;
   border: lightblue;
   padding: 3px 5px;
+  cursor: pointer;
 }
 .search-container {
   margin-bottom: 10px;
@@ -36,6 +37,16 @@ code {
   justify-content: center;
   margin-right: 26%;
   flex-direction: column;
+  margin-top: 7%;
+}
+#submit-btn,
+#login-btn {
+  width: 10%;
+  margin-left: 20%;
+  background: #333;
+  color: #fff;
+  border: 1px solid #000;
+  cursor: pointer;
 }
 .signup {
   display: flex;
@@ -188,6 +199,14 @@ nav a {
   flex-direction: column;
   align-items: center;
 }
+.header {
+  background: url(./images/header.gif);
+  color: #fff;
+  height: 50px;
+}
+.header h1 {
+  margin: 0px;
+}
 .feed-box {
   display: flex;
   background: #ccc;
@@ -207,12 +226,38 @@ nav a {
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 750px) {
   .image-container {
     flex-direction: column;
   }
+  .googleSignUp {
+    margin-top: 4%;
+  }
+  .home-container {
+    margin-top: 6%;
+  }
+  .nav-email {
+    display: none;
+  }
+  #submit-btn,
+  #login-btn {
+    width: 20%;
+    margin: 0;
+  }
+  .nav-links {
+    justify-content: center;
+  }
   .image-container input {
     position: static;
+  }
+  .login input,
+  .signup input {
+    width: 60%;
+  }
+
+  .login,
+  .signup {
+    margin: 0;
   }
   .song-div {
     display: flex;
