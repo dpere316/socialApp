@@ -56,6 +56,9 @@ const actions = {
   addProfilePic: async (profilePic) => {
     return await service.get("/api/uploadfile", profilePic);
   },
+  getProfile: async () => {
+    return await service.get("/profile");
+  }
 };
 
 export default actions;

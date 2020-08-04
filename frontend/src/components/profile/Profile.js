@@ -29,21 +29,27 @@ class Profile extends Component {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     selectedFile: null,
     friends: [],
+    song:''
   };
 
   async componentDidMount() {
-    // console.log(this);
-    Axios.get(`http://localhost:5000/profile`, { withCredentials: true }).then(
+    console.log(this);
+     actions.getProfile(this.state).then(
+    // Axios.get(`http://localhost:5000/profile`, { withCredentials: true }).then(
       (res) => {
         console.log(res.data.user.styles, res.data);
         let styles = [...res.data.user.styles];
-        if (styles.pop()?.styles ) {
+        if (styles[styles.length]?.styles) {
           this.setState({
-            styles: styles.pop().styles,
+            styles: styles[styles.length]?.styles,
+            
           });
         }
-      }
-    );
+        this.setState({
+          song:res.data.user.song
+        })
+      });
+
     let me = await actions.getFriends();
     // console.log(me)
     this.setState({
@@ -97,6 +103,7 @@ class Profile extends Component {
   };
 
   render() {
+    console.log(this)
     if (!this.props.user.email) {
       this.props.history.push("/log-in");
     }
@@ -162,7 +169,7 @@ class Profile extends Component {
           <div className="song-div">
             <audio
               className="songs"
-              src={this.props.user.song}
+              src={this.state.song}
               controls
             ></audio>
           </div>
