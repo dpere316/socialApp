@@ -2,9 +2,7 @@ import axios from "axios";
 let baseURL;
 
 process.env.NODE_ENV === "production"
-  ? (baseURL = "https://git.heroku.com/social-space.git")(
-      (baseURL = "window.location.origin")
-    )
+  ? (baseURL = "https://social-space.herokuapp.com")
   : (baseURL = "http://localhost:5000");
 
 const service = axios.create({ withCredentials: true, baseURL });
