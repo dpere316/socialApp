@@ -5,10 +5,9 @@ import NotFound from "./components/404/NotFound.js";
 import SignUp from "./components/auth/SignUp";
 import Music from "./components/Music";
 import LogIn from "./components/auth/LogIn";
+import Contact from "./components/contact";
 import Profile from "./components/profile/Profile";
 import actions from "./services/index";
-import GoogleAuth from "./components/auth/GoogleAuth";
-import GoogleAuthLogin from "./components/auth/GoogleAuthLogin";
 import Status from "./components/profile/status/status";
 import Users from "./components/profile/friends/users";
 import Feed from "./components/feed/feed";
@@ -48,18 +47,13 @@ class App extends Component {
               </Fragment>
             ) : (
               <Fragment>
-                <NavLink to="/sign-up">|Sign Up|</NavLink>
-                <NavLink to="/log-in">|Log In|</NavLink>
+                <NavLink to="/contact">|Contact|</NavLink>
               </Fragment>
             )}
           </div>
         </nav>
         <div className="header">
           <h1>Social Space</h1>
-          <div className="googleSignUp">
-            {!this.state.email && <GoogleAuth setUser={this.setUser} />}{" "}
-            {!this.state.email && <GoogleAuthLogin setUser={this.setUser} />}
-          </div>
         </div>
         <Switch>
           <Route
@@ -72,6 +66,12 @@ class App extends Component {
             path="/sign-up"
             render={(props) => <SignUp {...props} setUser={this.setUser} />}
           />
+          <Route
+            exact
+            path="/contact"
+            render={(props) => <Contact {...props} setUser={this.setUser} />}
+          />
+
           <Route
             exact
             path="/log-in"

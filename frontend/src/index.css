@@ -37,7 +37,7 @@ code {
   justify-content: center;
   margin-right: 26%;
   flex-direction: column;
-  margin-top: 7%;
+  margin-top: 4%;
 }
 #submit-btn,
 #login-btn {
@@ -47,6 +47,27 @@ code {
   color: #fff;
   border: 1px solid #000;
   cursor: pointer;
+}
+.ricky img,
+.daniel img {
+  width: 30%;
+}
+.ricky {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 28%;
+}
+.ricky p,
+.daniel p {
+  margin: 0 2%;
+  text-align: left;
+  align-self: center;
+  font-size: 22px;
+}
+.daniel {
+  margin-right: 28%;
+  display: flex;
+  justify-content: flex-end;
 }
 .signup {
   display: flex;
@@ -216,6 +237,7 @@ nav a {
   width: 60%;
   justify-content: flex-start;
 }
+
 @media only screen and (max-width: 1280px) {
   .nav-links {
     flex: 3;
@@ -229,6 +251,23 @@ nav a {
 @media only screen and (max-width: 750px) {
   .image-container {
     flex-direction: column;
+  }
+  .ricky img,
+  .daniel img {
+    width: 80%;
+  }
+  .ricky {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    margin-bottom: 7%;
+  }
+  .daniel {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
   }
   .googleSignUp {
     margin-top: 4%;
@@ -282,7 +321,7 @@ nav a {
   }
   .nav-links {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding-right: 1%;
   }
   .status textarea {
