@@ -90,6 +90,13 @@ class App extends Component {
             )}
           />
           <Route
+            path="/profile/:id"
+            render={(props) => (
+              <Profile {...props} user={this.state} setUser={this.setUser} />
+            )}
+          />
+
+          <Route
             exact
             path="/feed"
             render={(props) => <Feed {...props} user={this.state} hey="sup" />}
