@@ -4,6 +4,7 @@ import actions from "../../services";
 class feed extends Component {
   state = {
     feed: [],
+    image: [],
   };
 
   async componentDidMount() {
@@ -17,11 +18,12 @@ class feed extends Component {
   componentWillReceiveProps(props) {
     console.log(props);
   }
+
   displayStatuses = () => {
     return this.state.feed.map((eachUser) => {
       if (eachUser.content != null)
         return (
-          <div>
+          <div className="feed-box">
             {eachUser.firstname} {eachUser.lastname} : {eachUser.content}
           </div>
         );
@@ -29,7 +31,12 @@ class feed extends Component {
   };
   render() {
     console.log(this);
-    return <div>Hello{this.displayStatuses()}</div>;
+    return (
+      <div>
+        <h3>News Feed:</h3>
+        <div className="feed-container">{this.displayStatuses()}</div>
+      </div>
+    );
   }
 }
 

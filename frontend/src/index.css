@@ -13,6 +13,16 @@ code {
     monospace;
 }
 
+.add-song {
+  background: darkblue;
+  color: #fff;
+  border-radius: 10px;
+  border: lightblue;
+  padding: 3px 5px;
+}
+.search-container {
+  margin-bottom: 10px;
+}
 .showStyles {
   background: #333;
   cursor: pointer;
@@ -21,19 +31,45 @@ code {
   font-weight: bold;
   padding: 5px 0px;
 }
-
+.login {
+  display: flex;
+  justify-content: center;
+  margin-right: 26%;
+  flex-direction: column;
+}
+.signup {
+  display: flex;
+  justify-content: center;
+  margin-left: 26%;
+  flex-direction: column;
+}
 textarea {
   width: 180px;
   height: 100px;
 }
 
+.googleSignUp {
+  margin-top: 1%;
+}
+
+.login input {
+  width: 30%;
+  margin-bottom: 5px;
+  height: 20px;
+}
+.signup input {
+  width: 32%;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  height: 20px;
+}
 .profile {
   display: flex;
   flex-direction: column;
 }
 
 .profile img {
-  width: 30%;
+  width: 35%;
   height: auto;
 }
 
@@ -146,6 +182,20 @@ nav a {
 .status textarea {
   width: 280%;
   max-width: 800px;
+}
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.feed-box {
+  display: flex;
+  background: #ccc;
+  padding: 2% 2%;
+  border: 1px solid #000;
+  margin: 10px 0px;
+  width: 60%;
+  justify-content: flex-start;
 }
 @media only screen and (max-width: 1280px) {
   .nav-links {

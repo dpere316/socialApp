@@ -8,16 +8,18 @@ class Home extends Component {
     console.log(this);
     return (
       <React.Fragment>
-        <h2>HOME</h2>
         <br></br>
         <div>
-          <h3>News Feed:</h3>
           {this.props?.user?.email ? (
             <Feed {...this.props} />
           ) : (
-            <div>
-              <Login />
-              <SignUp />
+            <div className="home-container">
+              <div className="login">
+                <Login />
+              </div>
+              <div className="signup">
+                <SignUp />
+              </div>
             </div>
           )}
         </div>
