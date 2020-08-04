@@ -16,6 +16,7 @@ class SignUp extends Component {
                 this.props.setUser({...user.data})  
             }).catch(({ response }) => console.error(response.data));
     }
+    
     render() {
         return (
             <Fragment>

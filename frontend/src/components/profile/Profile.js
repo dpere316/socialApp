@@ -88,7 +88,7 @@ class Profile extends Component {
       return (
         <div className="friend">
           {eachUser.firstname} {eachUser.lastname}
-          <Link to="">
+          <Link to={`/profile/${eachUser._id}`}>
             <img src={eachUser.image} />
           </Link>
         </div>
