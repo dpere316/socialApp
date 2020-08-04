@@ -11,8 +11,9 @@ class LogIn extends Component {
       .logIn(this.state)
       .then((user) => {
         this.props.setUser({ ...user.data });
+        this.props.history.push("/profile")
       })
-      .catch(({ response }) => console.error(response));
+      .catch(( response) => console.error(response));
   };
   render() {
     return (

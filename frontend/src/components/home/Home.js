@@ -15,10 +15,10 @@ class Home extends Component {
           ) : (
             <div className="home-container">
               <div className="login">
-                <Login />
+                <Login {...this.props} />
               </div>
               <div className="signup">
-                <SignUp />
+                <SignUp {...this.props} />
               </div>
             </div>
           )}
