@@ -37,7 +37,7 @@ class Profile extends Component {
       (res) => {
         console.log(res.data.user.styles, res.data);
         let styles = [...res.data.user.styles];
-        if (styles.pop()?.styles) {
+        if (styles.pop()?.styles ) {
           this.setState({
             styles: styles.pop().styles,
           });
