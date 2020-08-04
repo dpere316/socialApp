@@ -15,7 +15,7 @@ class SignUp extends Component {
       .then((user) => {
         this.props.setUser({ ...user.data });
       })
-      .catch(({ response }) => console.error(response.data));
+      .catch(({ response }) => console.error(response));
   };
   render() {
     return (
