@@ -61,7 +61,6 @@ class Search extends Component {
           <p className="song-title">
             {song.artist.name} - {song.title}
           </p>
-          <br></br>
           <audio className="songs" src={song.preview} controls></audio>
           <div>
             <a
@@ -74,7 +73,10 @@ class Search extends Component {
             </a>
             <br></br>
             {console.log(song.preview)}
-            <button onClick={() => self.addSong(song.preview)}>
+            <button
+              className="add-song"
+              onClick={() => self.addSong(song.preview)}
+            >
               Add Song To Profile
             </button>
           </div>
@@ -87,7 +89,7 @@ class Search extends Component {
     console.log(this);
     return (
       <div className="search">
-        <p className="header para">Search Our Sounds</p>
+        <p className="header para">Add a Song to Your Profile!</p>
         <input
           name="text"
           type="text"

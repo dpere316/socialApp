@@ -15,7 +15,7 @@ const styleSchema = new Schema({
         fontSize: "",
       },
       section: {
-        background: "",
+        background: "white",
         color: "",
         fontSize: "",
       },

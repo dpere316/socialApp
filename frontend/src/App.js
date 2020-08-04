@@ -54,6 +54,11 @@ class App extends Component {
             )}
           </div>
         </nav>
+        <h1>Social Space</h1>
+        <div className="googleSignUp">
+          {!this.state.email && <GoogleAuth setUser={this.setUser} />}{" "}
+          {!this.state.email && <GoogleAuthLogin setUser={this.setUser} />}
+        </div>
         <Switch>
           <Route
             exact
@@ -104,8 +109,6 @@ class App extends Component {
           />
           <Route component={NotFound} />
         </Switch>
-        {!this.state.email && <GoogleAuth setUser={this.setUser} />}
-        {!this.state.email && <GoogleAuthLogin setUser={this.setUser} />}
       </BrowserRouter>
     );
   }

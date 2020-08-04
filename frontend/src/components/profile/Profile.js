@@ -8,12 +8,12 @@ class Profile extends Component {
   state = {
     styles: {
       header: {
-        background: "",
+        background: "white",
         fontSize: "",
       },
 
       body: {
-        background: "",
+        background: "white",
         color: "",
         fontSize: "",
       },
@@ -24,7 +24,7 @@ class Profile extends Component {
       },
     },
 
-    show: true,
+    show: false,
     image:
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     selectedFile: null,
