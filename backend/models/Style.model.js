@@ -10,12 +10,12 @@ const styleSchema = new Schema({
       },
 
       body: {
-        background: "white",
+        background: "",
         color: "",
         fontSize: "",
       },
       section: {
-        background: "white",
+        background: "",
         color: "",
         fontSize: "",
       },

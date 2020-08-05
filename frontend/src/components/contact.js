@@ -3,13 +3,15 @@ import React, { Component } from "react";
 class Contact extends Component {
   render() {
     return (
-      <div>
+      <div className="contact">
+        <br></br>
         <h2>Contact Us</h2>
         <br></br>
         <div className="ricky">
           <img alt="ricky" src={require("../images/ricky.jpg")}></img>
           <p>
             Location: Los Angeles, CA<br></br>
+            <br></br>
             LinkedIn:{" "}
             <a target="_blank" href="https://linkedin.com/in/richard-toledo/">
               Richard Toledo/LinkedIn
@@ -24,6 +26,7 @@ class Contact extends Component {
         <div className="daniel">
           <p>
             Location: Miami, FL<br></br>
+            <br></br>
             LinkedIn:{" "}
             <a target="_blank" href="https://linkedin.com/in/dperez316">
               Daniel Perez/LinkedIn
