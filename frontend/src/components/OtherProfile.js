@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import actions from "../services/index";
 import { Link } from "react-router-dom";
 import Talk from "talkjs";
+import { memoryStorage } from "multer";
 
 class OtherProfile extends Component {
   state = {
     user: {},
     users: [],
     currentUser: [],
+    friends:[]
   };
 
   async componentDidMount() {
@@ -19,16 +21,23 @@ class OtherProfile extends Component {
     });
     let response = await actions.findUsers(this.state);
     let curr = await actions.isLoggedIn(this.state);
+    let me = await actions.getFriends();
     // console.log("find friends",res)
     // console.log(curr)
     this.setState({
       users: response.data.users,
       currentUser: curr.data,
+      friends: me.data.users.friends
     });
+    // console.log(this.state.user)
+    // console.log("Current",this.state.currentUser)
+    // console.log(this.state.users)
+    // console.log("Friends",this.state.friends)
   }
+  
   displayFriends = () => {
-    return this.state?.user?.friends?.map((eachUser) => {
-      console.log(eachUser);
+    return this.state?.users.map((eachUser) => {
+      console.log("Who am i",eachUser)
       return (
         <div className="friend">
           {eachUser.firstname} {eachUser.lastname}
@@ -61,11 +70,14 @@ class OtherProfile extends Component {
           name: currentUser?.firstname + " " + currentUser?.lastname,
           id: currentUser?._id,
         });
+        // console.log("me",me)
         const other = new Talk.User({
           ...user,
           name: user?.firstname + " " + user?.lastname,
           id: user?._id,
+          
         });
+        // console.log("other",other)
 
         // console.log("Me", me);
         // console.log("Other", other);
@@ -109,10 +121,15 @@ class OtherProfile extends Component {
           </header>
           <section className="image-container" style={styles?.section}>
             <img src={this.state?.user?.image}></img>
-            <button onClick={(userId) => this.handleClick()}>Message</button>
+            <button onClick={(userId) => this.handleClick(this.state?.user?._id)}>Message</button>
             <button onClick={() => this.removeFriend(this.state?.user)}>Remove Friend</button>
             <div className="status">{this.state?.user?.status}</div>
           </section>
+          <div className="chatbox-container" ref={(c) => (this.container = c)}>
+          <div id="talkjs-container" style={{ height: "600px" }}>
+            <i></i>
+          </div>
+        </div>
           <div className="song-div">
             <audio
               className="songs"

@@ -13,18 +13,25 @@ class feed extends Component {
     this.setState({
       feed: res.data,
     });
-    // console.log(this.state.feed);
+    console.log(this.state.feed);
   }
   componentWillReceiveProps(props) {
     // console.log(props);
   }
-
+  // displayImages =() =>{
+  //   return this.props.user.friends.map((eachUser) =>{
+  //     console.log("1",eachUser.image)
+  //     return <image src={eachUser.image}></image>
+  //   })
+    
+  // }
   displayStatuses = () => {
     return this.state.feed.map((eachUser) => {
+      console.log(eachUser)
       if (eachUser.content != null)
         return (
           <div className="feed-box">
-            <img src={this.props.user.image}></img>
+            <img src={eachUser.image}></img>
             <br></br>
             {eachUser.firstname} {eachUser.lastname} : <br></br>
             {eachUser.content}
