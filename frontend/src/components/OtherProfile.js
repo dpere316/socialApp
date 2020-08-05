@@ -1,67 +1,48 @@
 import React, { Component } from "react";
-import actions from "../../../services";
+import actions from "../services/index";
+import { Link } from "react-router-dom";
 import Talk from "talkjs";
 
-class users extends Component {
-  state = {
-    users: [],
-    currentUser: [],
-    searchValue: "",
-  };
-
+class OtherProfile extends Component {
+  state = { user: {}, users: [], currentUser: [] };
   async componentDidMount() {
-    // console.log("line12",this.state)
-    let res = await actions.findUsers(this.state);
+    actions.getOtherProfile(this.props.match.params.id).then((res) => {
+      console.log(res);
+      this.setState({
+        user: res.data.user,
+      });
+    });
+    let response = await actions.findUsers(this.state);
     let curr = await actions.isLoggedIn(this.state);
     // console.log("find friends",res)
     // console.log(curr)
     this.setState({
-      users: res.data.users,
+      users: response.data.users,
       currentUser: curr.data,
     });
   }
-
-  displayUsers = () => {
-    return this.state.users.map((eachUser) => {
+  displayFriends = () => {
+    return this.state?.user?.friends?.map((eachUser) => {
       console.log(eachUser);
-      if (
-        eachUser?.name &&
-        eachUser.name
-          .toLowerCase()
-          .includes(this.state.searchValue.toLowerCase())
-      ) {
-        return (
-          <div>
-            <li>
-              {eachUser.firstname}
-              <button onClick={() => this.addFriend(eachUser)}>
-                Add Friend
-              </button>
-              <button onClick={() => this.removeFriend(eachUser)}>
-                Remove Friend
-              </button>
-              <button onClick={(userId) => this.handleClick(eachUser._id)}>
-                Message
-              </button>
-            </li>
-          </div>
-        );
-      }
+      return (
+        <div className="friend">
+          {eachUser.firstname} {eachUser.lastname}
+          <Link to={`/profile/${eachUser._id}`}>
+            <img src={eachUser.image} />
+          </Link>
+        </div>
+      );
     });
   };
 
-  handleOnChange = (event) => {
-    this.setState({ searchValue: event.target.value });
+  removeFriend = async (friend) => {
+    let res = await actions.removeFriend(friend);
+    // console.log(res)
   };
-
-  handleSearch = () => {
-    this.setState({ show: true });
-  };
-
   handleClick(userId) {
     /* Retrieve the two users that will participate in the conversation */
     const currentUser = this.state.currentUser;
-    const user = this.state.users.find((user) => user._id === userId);
+    const user = this.state.users?.find((user) => user._id === userId);
     // console.log(currentUser);
     // console.log(user);
     // console.log(userId);
@@ -108,36 +89,38 @@ class users extends Component {
       .catch((e) => console.error(e));
   }
 
-  addFriend = async (friend) => {
-    let res = await actions.addFriend(friend);
-    // console.log(res)
-  };
-
-  removeFriend = async (friend) => {
-    let res = await actions.removeFriend(friend);
-    // console.log(res)
-  };
-
   render() {
+    let styles = this.state?.user?.styles;
+    console.log(styles, this);
     return (
-      <div>
-        <input
-          name="text"
-          type="text"
-          placeholder="Search"
-          onChange={(event) => this.handleOnChange(event)}
-          value={this.state.searchValue}
-        />
-        <button onClick={this.handleSearch}>Search</button>
-
-        {this.displayUsers()}
-        <div className="chatbox-container" ref={(c) => (this.container = c)}>
-          <div id="talkjs-container" style={{ height: "600px" }}>
-            <i></i>
+      <body style={styles?.body}>
+        <div className="profile">
+          <header style={styles?.header}>
+            <h1>
+              Welcome to {this.state?.user?.firstname}{" "}
+              {this.state?.user?.lastname}'s profile!!!{" "}
+            </h1>
+            <h1></h1>
+          </header>
+          <section className="image-container" style={styles?.section}>
+            <img src={this.state?.user?.image}></img>
+            <button onClick={(userId) => this.handleClick()}>Message</button>
+            <button onClick={() => this.removeFriend()}>Remove Friend</button>
+            <div className="status">{this.state?.user?.status}</div>
+          </section>
+          <div className="song-div">
+            <audio
+              className="songs"
+              src={this.state?.user?.song}
+              controls
+            ></audio>
           </div>
+          <h1>{this.state?.user?.firstname}'s Friends</h1>
+          {<div className="friends-container">{this.displayFriends()}</div>}
         </div>
-      </div>
+      </body>
     );
   }
 }
-export default users;
+
+export default OtherProfile;

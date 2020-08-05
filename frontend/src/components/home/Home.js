@@ -11,16 +11,20 @@ class Home extends Component {
     console.log(this);
     return (
       <React.Fragment>
-        <div className="googleSignUp">
-          {!this.state.email && <GoogleAuth setUser={this.setUser} />}{" "}
-          {!this.state.email && <GoogleAuthLogin setUser={this.setUser} />}
-        </div>
         <br></br>
         <div>
           {this.props?.user?.email ? (
             <Feed {...this.props} />
           ) : (
             <div className="home-container">
+              <div className="googleSignUp">
+                {!this.state.email && (
+                  <GoogleAuth setUser={this.props.setUser} />
+                )}{" "}
+                {!this.state.email && (
+                  <GoogleAuthLogin setUser={this.props.setUser} />
+                )}
+              </div>
               <div className="login">
                 <Login {...this.props} />
               </div>

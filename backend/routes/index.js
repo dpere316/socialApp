@@ -34,7 +34,9 @@ router.post("/profile", isAuth, (req, res) => {
     });
   });
 });
-
+router.post("/other-profile", (req, res) => {
+  User.findById(req.body.id).then((user) => res.json({ user }));
+});
 //Displays a list of users
 router.get("/find-users", isAuth, (req, res, next) => {
   User.find({ _id: { $ne: req.user._id } }).then((users) => {
@@ -49,13 +51,15 @@ router.post("/song", isAuth, (req, res, next) => {
       res.json({ user });
     })
     .catch((err) => console.error(err));
-  })
-  
+});
+
 router.get("/get-friends", isAuth, (req, res, next) => {
-  User.findById(req.user._id).populate('friends').then((users) => {
-    console.log("user", users);
-    res.json({ users });
-  });
+  User.findById(req.user._id)
+    .populate("friends")
+    .then((users) => {
+      console.log("user", users);
+      res.json({ users });
+    });
 });
 
 //Add Friends
@@ -76,8 +80,6 @@ router.post("/add-friends", isAuth, (req, res, next) => {
     });
   });
 });
-
-
 
 // Remove friend from list
 router.post("/remove-friends", isAuth, (req, res, next) => {

@@ -24,7 +24,10 @@ class feed extends Component {
       if (eachUser.content != null)
         return (
           <div className="feed-box">
-            {eachUser.firstname} {eachUser.lastname} : {eachUser.content}
+            <img src={this.props.user.image}></img>
+            <br></br>
+            {eachUser.firstname} {eachUser.lastname} : <br></br>
+            {eachUser.content}
           </div>
         );
     });

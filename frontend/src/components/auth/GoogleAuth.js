@@ -8,8 +8,8 @@ const responseGoogle = (props) => {
     console.log(response);
     const user = {
       ...response.profileObj,
-      firstname:response.profileObj.givenName,
-      lastname:response.profileObj.familyName,
+      firstname: response.profileObj.givenName,
+      lastname: response.profileObj.familyName,
       password: response.profileObj?.googleId,
     };
     actions
@@ -17,7 +17,7 @@ const responseGoogle = (props) => {
       .then((user) => {
         props.setUser({ ...user.data });
       })
-      .catch(({ response }) => console.error(response.data));
+      .catch((response) => console.error(response));
   };
   return (
     <GoogleLogin

@@ -4,7 +4,7 @@ import { GoogleLogin } from "react-google-login";
 
 const responseGoogle = (props) => {
   // console.log(props);
-  
+
   const onResponse = (response) => {
     // console.log(response);
     const user = {
@@ -16,7 +16,7 @@ const responseGoogle = (props) => {
       .then((user) => {
         props.setUser({ ...user.data });
       })
-      .catch(({ response }) => console.error(response.data));
+      .catch((response) => console.error(response));
   };
   return (
     <GoogleLogin

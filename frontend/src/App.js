@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
 import Home from "./components/home/Home";
 import NotFound from "./components/404/NotFound.js";
 import SignUp from "./components/auth/SignUp";
+import OtherProfile from "./components/OtherProfile";
 import Music from "./components/Music";
 import LogIn from "./components/auth/LogIn";
 import Contact from "./components/contact";
@@ -59,7 +60,9 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={(props) => <Home {...props} user={this.state} setUser={this.setUser} />}
+            render={(props) => (
+              <Home {...props} user={this.state} setUser={this.setUser} />
+            )}
           />
           <Route
             exact
@@ -86,13 +89,23 @@ class App extends Component {
             exact
             path="/profile"
             render={(props) => (
-              <Profile {...props} user={this.state} key={Date.now()} setUser={this.setUser} />
+              <Profile
+                {...props}
+                user={this.state}
+                key={Date.now()}
+                setUser={this.setUser}
+              />
             )}
           />
           <Route
             path="/profile/:id"
             render={(props) => (
-              <Profile {...props} user={this.state}  setUser={this.setUser} />
+              <OtherProfile
+                {...props}
+                user={this.state}
+                key={Date.now()}
+                setUser={this.setUser}
+              />
             )}
           />
 

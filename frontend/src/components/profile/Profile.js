@@ -29,26 +29,26 @@ class Profile extends Component {
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
     selectedFile: null,
     friends: [],
-    song:''
+    song: "",
   };
 
   async componentDidMount() {
     console.log(this);
-     actions.getProfile(this.state).then(
-    // Axios.get(`http://localhost:5000/profile`, { withCredentials: true }).then(
+    actions.getProfile(this.state).then(
+      // Axios.get(`http://localhost:5000/profile`, { withCredentials: true }).then(
       (res) => {
         console.log(res.data.user.styles, res.data);
         let styles = [...res.data.user.styles];
         if (styles[styles.length]?.styles) {
           this.setState({
             styles: styles[styles.length]?.styles,
-            
           });
         }
         this.setState({
-          song:res.data.user.song
-        })
-      });
+          song: res.data.user.song,
+        });
+      }
+    );
 
     let me = await actions.getFriends();
     // console.log(me)
@@ -103,7 +103,7 @@ class Profile extends Component {
   };
 
   render() {
-    console.log(this)
+    console.log(this);
     if (!this.props.user.email) {
       this.props.history.push("/log-in");
     }
@@ -152,6 +152,7 @@ class Profile extends Component {
 
           <header style={styles?.header}>
             <h1>Welcome {this.props.user.firstname} !!! </h1>
+            <h1></h1>
           </header>
           <section className="image-container" style={styles?.section}>
             <img src={this.props.user.image}></img>
@@ -167,11 +168,7 @@ class Profile extends Component {
             </div>
           </section>
           <div className="song-div">
-            <audio
-              className="songs"
-              src={this.state.song}
-              controls
-            ></audio>
+            <audio className="songs" src={this.state.song} controls></audio>
           </div>
           <div className="profile-links">
             <Link to="/feed">Feed</Link>
