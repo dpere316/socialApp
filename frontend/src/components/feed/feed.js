@@ -13,10 +13,10 @@ class feed extends Component {
     this.setState({
       feed: res.data,
     });
-    console.log(this.state.feed);
+    // console.log(this.state.feed);
   }
   componentWillReceiveProps(props) {
-    console.log(props);
+    // console.log(props);
   }
 
   displayStatuses = () => {
@@ -33,7 +33,7 @@ class feed extends Component {
     });
   };
   render() {
-    console.log(this);
+    // console.log(this);
     return (
       <div>
         <h3>News Feed:</h3>

@@ -30,13 +30,13 @@ class Search extends Component {
       },
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         this.setState({
           data: response.data,
         });
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 
@@ -45,9 +45,9 @@ class Search extends Component {
     this.setState({ show: true });
   };
   addSong = async (song) => {
-    console.log("add", song);
+    // console.log("add", song);
     let res = await actions.addSong(song);
-    console.log(res);
+    // console.log(res);
   };
 
   returnSongs = () => {
@@ -55,7 +55,7 @@ class Search extends Component {
     let arr = [];
     let self = this;
     arr = this.state.data?.data.map(function (song) {
-      console.log(this, song);
+      // console.log(this, song);
       return (
         <div className="search-container">
           <p className="song-title">
@@ -86,7 +86,7 @@ class Search extends Component {
     return arr;
   };
   render() {
-    console.log(this);
+    // console.log(this);
     return (
       <div className="search">
         <p className="header para">Add a Song to Your Profile!</p>

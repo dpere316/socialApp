@@ -26,7 +26,7 @@ class messaging extends Component {
             me: me,
           });
         }
-        console.log(window.talkSession)
+        // console.log(window.talkSession)
         this.state.inbox = window.talkSession.createInbox();
         this.state.inbox.mount(this.container);
       })
