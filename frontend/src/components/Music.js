@@ -89,7 +89,11 @@ class Search extends Component {
     console.log(this);
     return (
       <div className="search">
-        <p className="header para">Add a Song to Your Profile!</p>
+        <p className=" para">
+          <br></br>
+          <b>Add a Song to Your Profile!</b>
+        </p>
+        <br></br>
         <input
           name="text"
           type="text"
@@ -98,6 +102,7 @@ class Search extends Component {
           value={this.state.searchValue}
         />{" "}
         <button onClick={this.handleSearch}>Search</button>
+        <br></br>
         <br></br>
         <div className="nextPrevBtns">
           {this.state.show && (

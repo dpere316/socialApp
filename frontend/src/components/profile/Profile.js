@@ -8,12 +8,12 @@ class Profile extends Component {
   state = {
     styles: {
       header: {
-        background: "white",
+        background: "",
         fontSize: "",
       },
 
       body: {
-        background: "white",
+        background: "",
         color: "",
         fontSize: "",
       },
@@ -111,6 +111,7 @@ class Profile extends Component {
     console.log(styles, this);
     return (
       <body style={styles?.body}>
+        {console.log(styles?.body)}
         <div className="profile">
           {this.state.show ? (
             <div>
