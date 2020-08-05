@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 import Talk from "talkjs";
 
 class OtherProfile extends Component {
-  state = { user: {}, users: [], currentUser: [] };
+  state = {
+    user: {},
+    users: [],
+    currentUser: [],
+  };
+
   async componentDidMount() {
     actions.getOtherProfile(this.props.match.params.id).then((res) => {
-      console.log(res);
+      // console.log(res);
       this.setState({
         user: res.data.user,
       });
@@ -41,8 +46,8 @@ class OtherProfile extends Component {
   };
   handleClick(userId) {
     /* Retrieve the two users that will participate in the conversation */
-    const currentUser = this.state.currentUser;
-    const user = this.state.users?.find((user) => user._id === userId);
+    const currentUser = this.state?.currentUser;
+    const user = this.state?.users?.find((user) => user?._id === userId);
     // console.log(currentUser);
     // console.log(user);
     // console.log(userId);
@@ -53,13 +58,13 @@ class OtherProfile extends Component {
         /* Create the two users that will participate in the conversation */
         const me = new Talk.User({
           ...currentUser,
-          name: currentUser.firstname + " " + currentUser.lastname,
-          id: currentUser._id,
+          name: currentUser?.firstname + " " + currentUser?.lastname,
+          id: currentUser?._id,
         });
         const other = new Talk.User({
           ...user,
-          name: user.firstname + " " + user.lastname,
-          id: user._id,
+          name: user?.firstname + " " + user?.lastname,
+          id: user?._id,
         });
 
         // console.log("Me", me);
@@ -91,7 +96,7 @@ class OtherProfile extends Component {
 
   render() {
     let styles = this.state?.user?.styles;
-    console.log(styles, this);
+    // console.log(styles, this);
     return (
       <body style={styles?.body}>
         <div className="profile">
@@ -105,7 +110,7 @@ class OtherProfile extends Component {
           <section className="image-container" style={styles?.section}>
             <img src={this.state?.user?.image}></img>
             <button onClick={(userId) => this.handleClick()}>Message</button>
-            <button onClick={() => this.removeFriend()}>Remove Friend</button>
+            <button onClick={() => this.removeFriend(this.state?.user)}>Remove Friend</button>
             <div className="status">{this.state?.user?.status}</div>
           </section>
           <div className="song-div">

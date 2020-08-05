@@ -8,7 +8,7 @@ import GoogleAuthLogin from "../auth/GoogleAuthLogin";
 class Home extends Component {
   state = {};
   render() {
-    console.log(this);
+    // console.log(this);
     return (
       <React.Fragment>
         <br></br>
