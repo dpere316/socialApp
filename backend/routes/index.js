@@ -36,7 +36,16 @@ router.post("/profile", isAuth, (req, res) => {
 });
 router.post("/other-profile", (req, res) => {
   User.findById(req.body.id)
-    .populate("friends")
+    .populate([
+      {
+        path: "friends",
+        model: "User",
+      },
+      {
+        path: "status",
+        model: "Status",
+      },
+    ])
     .then((user) => res.json({ user }));
 });
 //Displays a list of users

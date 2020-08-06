@@ -13,4 +13,4 @@ const statusSchema = new Schema(
   }
 );
 
-module.exports = model("status", statusSchema);
+module.exports = model("Status", statusSchema);

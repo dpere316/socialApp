@@ -39,13 +39,15 @@ class Profile extends Component {
       (res) => {
         console.log(res.data.user.styles, res.data);
         let styles = [...res.data.user.styles];
-        let latestStyle = styles[styles.length - 1].styles;
-        console.log(styles, styles.length, latestStyle);
-        if (latestStyle) {
-          console.log("made it in here with ", latestStyle);
-          this.setState({
-            styles: latestStyle,
-          });
+        if (styles.length > 0) {
+          let latestStyle = styles[styles.length - 1].styles;
+          console.log(styles, styles.length, latestStyle);
+          if (latestStyle) {
+            console.log("made it in here with ", latestStyle);
+            this.setState({
+              styles: latestStyle,
+            });
+          }
         }
         this.setState({
           song: res.data.user.song,
