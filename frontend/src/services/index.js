@@ -61,6 +61,9 @@ const actions = {
   getProfile: async () => {
     return await service.get("/profile");
   },
+  postProfile: async (styles) => {
+    return await service.post("/profile", styles);
+  },
   getOtherProfile: async (id) => {
     return await service.post("/other-profile", { id });
   },

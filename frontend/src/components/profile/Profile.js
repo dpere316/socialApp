@@ -79,11 +79,17 @@ class Profile extends Component {
   };
 
   submitStyles = () => {
-    Axios.post(`http://localhost:5000/profile`, this.state.styles, {
-      withCredentials: true,
-    }).then((res) => {
-      // console.log(res);
-    });
+    // Axios.post(`http://localhost:5000/profile`, this.state.styles, {
+    //   withCredentials: true,
+    // }).then((res) => {
+    //   // console.log(res);
+    // });
+    actions
+      .postProfile(this.state.styles)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => console.log(error));
   };
   uploadImage = async (e) => {
     const files = e.target.files;
