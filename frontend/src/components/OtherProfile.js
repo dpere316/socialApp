@@ -119,7 +119,7 @@ class OtherProfile extends Component {
     });
   };
   render() {
-    console.log(this.state.feed[0]?.content);
+    console.log(this.state.user.styles?.body);
     let styles = this.state?.user?.styles;
     // console.log(styles, this);
     return (

@@ -106,7 +106,8 @@ class Profile extends Component {
       );
     });
   };
-  removeTheme = (i) => {
+  removeTheme = async (theme, i) => {
+    let res = await actions.deleteTheme(theme);
     // console.log(this, i); actions.removeStyle()
     let newAllStyles = [...this.state.allStyles];
     newAllStyles.splice(i, 1);
@@ -114,6 +115,7 @@ class Profile extends Component {
       allStyles: newAllStyles,
     });
   };
+
   switchTheme = (i) => {
     let theme = this.state.allStyles[i];
     this.setState({

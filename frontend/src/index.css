@@ -165,6 +165,7 @@ nav {
 nav a {
   color: #fff;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -423,6 +424,7 @@ audio {
   .friends-container {
     flex-direction: column;
     align-content: center;
+    margin: 0 auto;
   }
   .daniel {
     flex-direction: column-reverse;

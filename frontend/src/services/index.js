@@ -39,7 +39,9 @@ const actions = {
   removeFriend: async (friend) => {
     return await service.post("/remove-friends", friend);
   },
-
+  deleteTheme: async (theme) => {
+    return await service.post("/remove-theme", theme);
+  },
   updateStatus: async (status) => {
     return await service.post("/add-status", status);
   },

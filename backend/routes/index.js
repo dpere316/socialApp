@@ -42,6 +42,10 @@ router.post("/other-profile", (req, res) => {
         model: "User",
       },
       {
+        path: "otherstyle",
+        model: "Style",
+      },
+      {
         path: "status",
         model: "Status",
       },
@@ -107,6 +111,23 @@ router.post("/remove-friends", isAuth, (req, res, next) => {
       $pull: { friends: req.user._id },
     }).then((users) => {
       res.json({ friends: false });
+    });
+  });
+});
+
+// Remove theme from list
+router.post("/remove-theme", isAuth, (req, res, next) => {
+  console.log(
+    "The person who clicked the button",
+    req.user._id,
+    "Removed Theme",
+    req.body._id
+  );
+  User.findByIdAndUpdate(req.user._id, {
+    $pull: { styles: req.body._id },
+  }).then((users) => {
+    Style.deleteOne({ _id: req.body._id }).then((users) => {
+      res.json({ styles: false });
     });
   });
 });
