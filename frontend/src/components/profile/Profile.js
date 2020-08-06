@@ -107,6 +107,7 @@ class Profile extends Component {
     });
   };
   removeTheme = async (theme, i) => {
+    console.log(theme, i);
     let res = await actions.deleteTheme(theme);
     // console.log(this, i); actions.removeStyle()
     let newAllStyles = [...this.state.allStyles];
@@ -114,6 +115,8 @@ class Profile extends Component {
     this.setState({
       allStyles: newAllStyles,
     });
+    console.log(this.state?.user, theme, i);
+    window.location.reload();
   };
 
   switchTheme = (i) => {
@@ -124,7 +127,8 @@ class Profile extends Component {
   };
   render() {
     console.log(this);
-    if (!this.props.user.email) {
+    if (!this.props.user.email && !this.props.user.loading) {
+      console.log("131", this.props);
       this.props.history.push("/log-in");
     }
     let styles = this.state.styles;
@@ -162,7 +166,7 @@ class Profile extends Component {
                           <button onClick={() => this.switchTheme(i)}>
                             Set Theme
                           </button>
-                          <button onClick={() => this.removeTheme(i)}>
+                          <button onClick={() => this.removeTheme(theme, i)}>
                             Remove Theme
                           </button>
                         </div>

@@ -119,8 +119,10 @@ class OtherProfile extends Component {
     });
   };
   render() {
-    console.log(this.state.user.styles?.body);
-    let styles = this.state?.user?.styles;
+    console.log(this.state.user);
+    let styles = this.state?.user?.styles?.reverse()[0];
+    styles = styles?.styles;
+    console.log(styles);
     // console.log(styles, this);
     return (
       <body style={styles?.body}>

@@ -15,7 +15,9 @@ import Feed from "./components/feed/feed";
 import Messaging from "./components/messaging/messaging";
 import "./styles/app.css";
 class App extends Component {
-  state = {};
+  state = {
+    loading: true,
+  };
 
   async componentDidMount() {
     console.log(process.env);

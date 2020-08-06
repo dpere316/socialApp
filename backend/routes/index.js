@@ -42,7 +42,7 @@ router.post("/other-profile", (req, res) => {
         model: "User",
       },
       {
-        path: "otherstyle",
+        path: "styles",
         model: "Style",
       },
       {
@@ -50,7 +50,13 @@ router.post("/other-profile", (req, res) => {
         model: "Status",
       },
     ])
-    .then((user) => res.json({ user }));
+    .then((user) => {
+      // Style.findById(user.styles[user.styles.length - 1]).then((style) => {
+      //   console.log("lines 55", style);
+      //   res.json({ ...user, ...style });
+      // });
+      res.json({ user });
+    });
 });
 //Displays a list of users
 router.get("/find-users", isAuth, (req, res, next) => {
@@ -126,8 +132,10 @@ router.post("/remove-theme", isAuth, (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, {
     $pull: { styles: req.body._id },
   }).then((users) => {
-    Style.deleteOne({ _id: req.body._id }).then((users) => {
-      res.json({ styles: false });
+    console.log(users);
+    Style.deleteOne({ _id: req.body._id }).then((themes) => {
+      console.log(themes);
+      res.json(themes);
     });
   });
 });
