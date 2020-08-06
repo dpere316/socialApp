@@ -14,11 +14,11 @@ class OtherProfile extends Component {
   };
 
   async componentDidMount() {
-    let res = await actions.retriveStatus(this.state);
-    console.log("Status", res);
-    this.setState({
-      feed: res.data,
-    });
+    // let res = await actions.retriveStatus(this.state);
+    // console.log("Status", res);
+    // this.setState({
+    //   feed: res.data,
+    // });
 
     actions.getOtherProfile(this.props.match.params.id).then((res) => {
       console.log(res);
@@ -45,7 +45,7 @@ class OtherProfile extends Component {
 
   displayFriends = () => {
     return this.state?.user?.friends?.map((eachUser) => {
-      console.log("Who am i", eachUser);
+      //   console.log("Who am i", eachUser);
       return (
         <div className="friend">
           {eachUser.firstname} {eachUser.lastname}
@@ -146,7 +146,10 @@ class OtherProfile extends Component {
                 </button>
               </div>
             </div>
-            <div className="other-status">{this.displayStatus()}</div>
+            <div className="other-status">
+              {this.state?.user?.firstname}'s Status: <br></br>
+              {this.state?.user?.status?.content}
+            </div>
           </section>
           <div className="chatbox-container" ref={(c) => (this.container = c)}>
             <div id="talkjs-container" style={{ height: "600px" }}>

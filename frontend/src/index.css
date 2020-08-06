@@ -325,6 +325,8 @@ audio {
 .other-status {
   margin-right: 40%;
   font-size: 120%;
+  width: 100%;
+  text-align: left;
 }
 .status textarea {
   width: 280%;
@@ -390,6 +392,10 @@ audio {
     margin: 0 auto;
     justify-self: center;
   }
+  .other-status {
+    text-align: center;
+    margin-bottom: 5px;
+  }
   .status-container {
     margin-right: 8%;
   }
@@ -405,7 +411,7 @@ audio {
   }
   .song-div audio {
     margin-top: 15px;
-    width: 40%;
+    width: 35%;
   }
   .ricky {
     flex-direction: column;
