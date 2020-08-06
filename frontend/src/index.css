@@ -324,7 +324,7 @@ audio {
 }
 
 .other-status {
-  margin-right: 40%;
+  margin-right: 10%;
   font-size: 120%;
   width: 100%;
   text-align: left;
@@ -365,7 +365,17 @@ audio {
 .feed-box p {
   margin-left: 20%;
 }
-
+.song-div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+.song-div p {
+  margin-left: 5%;
+  font-size: 120%;
+  font-weight: bold;
+}
 @media only screen and (max-width: 1280px) {
   .nav-links {
     flex: 3;
@@ -388,10 +398,22 @@ audio {
   .image-container {
     flex-direction: column;
   }
+  audio {
+    background: #ccc;
+  }
+  #message {
+    margin: 0px;
+    margin-left: 32%;
+  }
+  #remove {
+    margin: 0px;
+    margin-left: 5px;
+  }
   .image-container img,
   .image-container button {
     margin: 0 auto;
     justify-self: center;
+    padding-top: 10px;
   }
   .other-status {
     text-align: center;
@@ -463,7 +485,14 @@ audio {
   }
   .song-div {
     display: flex;
+    align-items: center;
     justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  .song-div p {
+    margin: 0;
+    padding-top: 10px;
   }
   .song-div audio {
     margin-left: 0%;

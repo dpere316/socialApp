@@ -139,11 +139,15 @@ class OtherProfile extends Component {
               <img src={this.state?.user?.image}></img>
               <div className="button-container">
                 <button
+                  id="message"
                   onClick={(userId) => this.handleClick(this.state?.user?._id)}
                 >
                   Message
                 </button>
-                <button onClick={() => this.removeFriend(this.state?.user)}>
+                <button
+                  id="remove"
+                  onClick={() => this.removeFriend(this.state?.user)}
+                >
                   Remove Friend
                 </button>
               </div>
@@ -159,6 +163,9 @@ class OtherProfile extends Component {
             </div>
           </div>
           <div className="song-div">
+            <div>
+              <p>{this.state?.user?.firstname}'s Profile Track:</p>
+            </div>
             <audio
               className="songs"
               src={this.state?.user?.song}

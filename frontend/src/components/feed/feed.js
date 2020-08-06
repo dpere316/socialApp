@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import actions from "../../services";
+import { Link } from "react-router-dom";
 
 class feed extends Component {
   state = {
@@ -33,7 +34,9 @@ class feed extends Component {
           <div className="feed-box">
             <div> {this.displayImages()}</div>
             <br></br>
-            <img src={eachUser.user.image}></img>
+            <Link to={`/profile/${eachUser.user._id}`}>
+              <img src={eachUser.user.image}></img>
+            </Link>
             <p>
               {eachUser.firstname} {eachUser.lastname} : <br></br>
               <br></br>
