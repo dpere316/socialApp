@@ -90,6 +90,7 @@ class Profile extends Component {
         console.log(res);
       })
       .catch((error) => console.log(error));
+    window.location.reload();
   };
   uploadImage = async (e) => {
     const files = e.target.files;
