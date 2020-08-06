@@ -18,6 +18,7 @@ router.post("/add-status", isAuth, (req, res, next) => {
 
 router.get("/get-status", isAuth, (req, res, next) => {
   Status.find()
+    .populate("user")
     .then((status) => {
       console.log(status);
       res.json(status);

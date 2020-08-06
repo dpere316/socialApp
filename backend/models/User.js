@@ -3,16 +3,17 @@ const PLM = require("passport-local-mongoose");
 
 const userSchema = new Schema(
   {
-    name:{type:String},
-    email: {type:String},
-    firstname:{type:String},
-    lastname:{type:String},
-    googleId: {type:String},
-    imageUrl: {type:String},
-    song:{type:String, default:null},
-    friends:[{type:Schema.Types.ObjectId,ref:"User"}],
-    bio:{type:String, default:null},
-    role:{type:String, default:"Member"},
+    name: { type: String },
+    email: { type: String },
+    firstname: { type: String },
+    lastname: { type: String },
+    googleId: { type: String },
+    imageUrl: { type: String },
+    song: { type: String, default: null },
+    friends: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    bio: { type: String, default: null },
+    status: { type: Schema.Types.ObjectId, ref: "Status" },
+    role: { type: String, default: "Member" },
     styles: [{ type: Schema.Types.ObjectId, ref: "Style" }],
     image: {
       type: String,

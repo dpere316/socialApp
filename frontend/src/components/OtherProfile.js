@@ -9,16 +9,24 @@ class OtherProfile extends Component {
     user: {},
     users: [],
     currentUser: [],
-    friends:[]
+    feed: [],
+    friends: [],
   };
 
   async componentDidMount() {
+    let res = await actions.retriveStatus(this.state);
+    console.log("Status", res);
+    this.setState({
+      feed: res.data,
+    });
+
     actions.getOtherProfile(this.props.match.params.id).then((res) => {
-      // console.log(res);
+      console.log(res);
       this.setState({
         user: res.data.user,
       });
     });
+
     let response = await actions.findUsers(this.state);
     let curr = await actions.isLoggedIn(this.state);
     let me = await actions.getFriends();
@@ -27,17 +35,17 @@ class OtherProfile extends Component {
     this.setState({
       users: response.data.users,
       currentUser: curr.data,
-      friends: me.data.users.friends
+      friends: me.data.users.friends,
     });
     // console.log(this.state.user)
     // console.log("Current",this.state.currentUser)
     // console.log(this.state.users)
     // console.log("Friends",this.state.friends)
   }
-  
+
   displayFriends = () => {
-    return this.state?.users.map((eachUser) => {
-      console.log("Who am i",eachUser)
+    return this.state?.user?.friends?.map((eachUser) => {
+      console.log("Who am i", eachUser);
       return (
         <div className="friend">
           {eachUser.firstname} {eachUser.lastname}
@@ -75,7 +83,6 @@ class OtherProfile extends Component {
           ...user,
           name: user?.firstname + " " + user?.lastname,
           id: user?._id,
-          
         });
         // console.log("other",other)
 
@@ -105,8 +112,14 @@ class OtherProfile extends Component {
       })
       .catch((e) => console.error(e));
   }
-
+  displayStatus = () => {
+    return this.state.feed.map((eachUser) => {
+      console.log(eachUser.content);
+      return <div>{eachUser.content}</div>;
+    });
+  };
   render() {
+    console.log(this.state.feed[0]?.content);
     let styles = this.state?.user?.styles;
     // console.log(styles, this);
     return (
@@ -120,16 +133,26 @@ class OtherProfile extends Component {
             <h1></h1>
           </header>
           <section className="image-container" style={styles?.section}>
-            <img src={this.state?.user?.image}></img>
-            <button onClick={(userId) => this.handleClick(this.state?.user?._id)}>Message</button>
-            <button onClick={() => this.removeFriend(this.state?.user)}>Remove Friend</button>
-            <div className="status">{this.state?.user?.status}</div>
+            <div className="otherImage">
+              <img src={this.state?.user?.image}></img>
+              <div className="button-container">
+                <button
+                  onClick={(userId) => this.handleClick(this.state?.user?._id)}
+                >
+                  Message
+                </button>
+                <button onClick={() => this.removeFriend(this.state?.user)}>
+                  Remove Friend
+                </button>
+              </div>
+            </div>
+            <div className="other-status">{this.displayStatus()}</div>
           </section>
           <div className="chatbox-container" ref={(c) => (this.container = c)}>
-          <div id="talkjs-container" style={{ height: "600px" }}>
-            <i></i>
+            <div id="talkjs-container" style={{ height: "600px" }}>
+              <i></i>
+            </div>
           </div>
-        </div>
           <div className="song-div">
             <audio
               className="songs"

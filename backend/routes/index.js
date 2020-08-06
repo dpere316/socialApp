@@ -35,7 +35,9 @@ router.post("/profile", isAuth, (req, res) => {
   });
 });
 router.post("/other-profile", (req, res) => {
-  User.findById(req.body.id).then((user) => res.json({ user }));
+  User.findById(req.body.id)
+    .populate("friends")
+    .then((user) => res.json({ user }));
 });
 //Displays a list of users
 router.get("/find-users", isAuth, (req, res, next) => {

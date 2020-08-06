@@ -31,19 +31,26 @@ class users extends Component {
           .includes(this.state.searchValue.toLowerCase())
       ) {
         return (
-          <div>
-            <li>
-              {eachUser.firstname}
-              <button onClick={() => this.addFriend(eachUser)}>
-                Add Friend
-              </button>
-              <button onClick={() => this.removeFriend(eachUser)}>
-                Remove Friend
-              </button>
-              <button onClick={(userId) => this.handleClick(eachUser._id)}>
-                Message
-              </button>
-            </li>
+          <div className="allUsers">
+            <div>
+              <div>
+                <div className="users-imgbox">
+                  <img src={eachUser.image}></img>
+                </div>
+                {eachUser.firstname} {eachUser.lastname}
+              </div>
+              <div className="allUsersBtn">
+                <button onClick={() => this.addFriend(eachUser)}>
+                  Add Friend
+                </button>
+                <button onClick={() => this.removeFriend(eachUser)}>
+                  Remove Friend
+                </button>
+                <button onClick={(userId) => this.handleClick(eachUser._id)}>
+                  Message
+                </button>
+              </div>
+            </div>
           </div>
         );
       }
@@ -120,7 +127,9 @@ class users extends Component {
 
   render() {
     return (
-      <div>
+      <div className="users-search">
+        <br></br>
+        Search for Your Friends!<br></br>
         <input
           name="text"
           type="text"
@@ -129,7 +138,6 @@ class users extends Component {
           value={this.state.searchValue}
         />
         <button onClick={this.handleSearch}>Search</button>
-
         {this.displayUsers()}
         <div className="chatbox-container" ref={(c) => (this.container = c)}>
           <div id="talkjs-container" style={{ height: "600px" }}>

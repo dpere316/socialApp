@@ -23,7 +23,7 @@ class Profile extends Component {
         fontSize: "",
       },
     },
-
+    allStyles: this.props.user.styles,
     show: false,
     image:
       "https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png",
@@ -39,9 +39,12 @@ class Profile extends Component {
       (res) => {
         console.log(res.data.user.styles, res.data);
         let styles = [...res.data.user.styles];
-        if (styles[styles.length]?.styles) {
+        let latestStyle = styles[styles.length - 1].styles;
+        console.log(styles, styles.length, latestStyle);
+        if (latestStyle) {
+          console.log("made it in here with ", latestStyle);
           this.setState({
-            styles: styles[styles.length]?.styles,
+            styles: latestStyle,
           });
         }
         this.setState({
@@ -101,7 +104,20 @@ class Profile extends Component {
       );
     });
   };
-
+  removeTheme = (i) => {
+    // console.log(this, i); actions.removeStyle()
+    let newAllStyles = [...this.state.allStyles];
+    newAllStyles.splice(i, 1);
+    this.setState({
+      allStyles: newAllStyles,
+    });
+  };
+  switchTheme = (i) => {
+    let theme = this.state.allStyles[i];
+    this.setState({
+      styles: theme.styles,
+    });
+  };
   render() {
     console.log(this);
     if (!this.props.user.email) {
@@ -133,9 +149,20 @@ class Profile extends Component {
                 <br></br>
                 <h4>Saved Themes:</h4>
                 <div className="themes">
-                  {this.props.user.styles?.map((theme) =>
+                  {this.state.allStyles?.map((theme, i) =>
                     theme.styles ? (
-                      <textarea>{JSON.stringify(theme.styles)}</textarea>
+                      <div className="themebox">
+                        <textarea>{JSON.stringify(theme.styles)}</textarea>
+                        <br />
+                        <div>
+                          <button onClick={() => this.switchTheme(i)}>
+                            Set Theme
+                          </button>
+                          <button onClick={() => this.removeTheme(i)}>
+                            Remove Theme
+                          </button>
+                        </div>
+                      </div>
                     ) : null
                   )}
                 </div>
