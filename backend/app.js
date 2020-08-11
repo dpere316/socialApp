@@ -61,8 +61,6 @@ app.use(logger("dev"));
 const index = require("./routes/index");
 const auth = require("./routes/auth");
 const status = require("./routes/status.routes");
-app.use("/", index);
-app.use("/", auth);
 app.use("/api", index);
 app.use("/api", auth);
 app.use("/", status);
