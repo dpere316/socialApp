@@ -4,3 +4,4 @@ backend/node_modules
 cloudName = add-your-cloudinary-name
 cloudKey = add-your-cloudinary-key
 cloudSecret = add-your-cloudinary-secret
+
