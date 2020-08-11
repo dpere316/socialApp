@@ -28,10 +28,14 @@ const debug = require("debug")(
 
 const app = express();
 
-app.use (
+app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000", "https://iron-space.netlify.app","https://iron-space.herokuapp.com"], //Swap this with the client url
+    origin: [
+      "http://localhost:3000",
+      "https://iron-space.netlify.app",
+      "https://iron-space.herokuapp.com",
+    ], //Swap this with the client url
   })
 );
 
@@ -57,14 +61,9 @@ app.use(logger("dev"));
 const index = require("./routes/index");
 const auth = require("./routes/auth");
 const status = require("./routes/status.routes");
-// app.use("/", index);
-// app.use("/", auth);
-// app.use("/", status);
-
-app.get('*', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
-})
-
+app.use("/", index);
+app.use("/", auth);
+app.use("/", status);
 
 // Uncomment this line for production
 let client = path.join(__dirname + "../public/index.html");
