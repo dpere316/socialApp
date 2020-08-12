@@ -63,7 +63,7 @@ const auth = require("./routes/auth");
 const status = require("./routes/status.routes");
 app.use("/api", index);
 app.use("/api", auth);
-app.use("/api", status);
+app.use("/", status);
 app.get("*", (req, res, next) => {
   res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
